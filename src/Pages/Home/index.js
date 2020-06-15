@@ -1,14 +1,13 @@
 import React from 'react';
 import Styled from 'styled-components'
-import Router from './Components/Router';
 
   
-function App() {
+function Home() {
   return (
     <div >
-      <Router />
+    
     </div>
   );
 }
 
-export default App;
+export default Home;
