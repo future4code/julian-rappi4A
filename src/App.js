@@ -1,6 +1,16 @@
 import React from 'react';
 import Styled from 'styled-components'
 import Router from './Components/Router';
+import { createMuiTheme, ThemeProvider  } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#e86e5a',
+    } 
+  }
+});
 
 const Container = Styled.div`
   display: flex;
@@ -11,8 +21,12 @@ const Container = Styled.div`
 function App() {
   return (
     <Container >
-      <Router />
-    </Container>
+    <ThemeProvider theme={theme}>
+      <div >
+        <Router />
+      </div>    
+    </ThemeProvider>
+</Container>
   );
 }
 
