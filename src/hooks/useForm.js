@@ -5,7 +5,7 @@ export const useForm = (initialState) => {
 
     const onChangeInput = event => {
         const newValue = event.target.value 
-        const fieldName = evet.target.name
+        const fieldName = event.target.name
 
         setForm({...form,[fieldName]:newValue})
     }
