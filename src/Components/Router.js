@@ -35,12 +35,12 @@ function Router() {
                 <Route exact path='/signup'>
                     <SignUp />
                 </Route>
-                <Route exact path='/'>
+                <Route exact path='/edit-signup'>
                     <EditSignUp />
                 </Route>
-                {/* <Route exact path='/'>
+                <Route exact path='/'>
                     <Login />
-                </Route> */}
+                </Route>
             </Switch>
         </BrowserRouter>
     );
