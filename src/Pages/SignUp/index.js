@@ -1,12 +1,11 @@
 import React from 'react';
-import Styled from 'styled-components'
-
+import styled from './styled';
   
 function SignUp() {
   return (
-    <div >
+    <Container>
     
-    </div>
+    </Container>
   );
 }
 
