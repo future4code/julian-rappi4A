@@ -9,7 +9,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 background-color: #e86e5a;
-max-width: 360px;
+width: 360px;
 height: 640px;
 transition: 400ms;
 `
