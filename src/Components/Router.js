@@ -8,6 +8,7 @@ import Perfil from '../Pages/Perfil'
 import RegisterAdress from '../Pages/RegisterAdress'
 import Restaurant from '../Pages/Restaurant'
 import SignUp from '../Pages/SignUp'
+import Intro from '../Pages/Intro';
 import EditSignUp from '../Pages/EditSignUp'
 
 function Router() {
@@ -37,8 +38,10 @@ function Router() {
                 </Route>
                 <Route exact path='/edit-signup'>
                     <EditSignUp />
-                </Route>
                 <Route exact path='/'>
+                    <Intro />
+                </Route>
+                <Route exact path='/login'>
                     <Login />
                 </Route>
             </Switch>
