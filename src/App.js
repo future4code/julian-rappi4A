@@ -12,14 +12,21 @@ const theme = createMuiTheme({
   }
 });
 
+const Container = Styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
   
 function App() {
   return (
+    <Container >
     <ThemeProvider theme={theme}>
       <div >
         <Router />
       </div>    
     </ThemeProvider>
+</Container>
   );
 }
 
