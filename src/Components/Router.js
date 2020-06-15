@@ -9,6 +9,7 @@ import RegisterAdress from '../Pages/RegisterAdress'
 import Restaurant from '../Pages/Restaurant'
 import SignUp from '../Pages/SignUp'
 import Intro from '../Pages/Intro';
+import EditSignUp from '../Pages/EditSignUp'
 
 function Router() {
     return (
@@ -41,6 +42,9 @@ function Router() {
                 <Route exact path='/login'>
                     <Login />
                 </Route>
+                {/* <Route exact path='/'>
+                    <Login />
+                </Route> */}
             </Switch>
         </BrowserRouter>
     );
