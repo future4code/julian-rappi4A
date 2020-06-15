@@ -13,22 +13,17 @@ align-items: center;
 
 
 `
-
-export const LoginApp = styled.div`
-
-
-
-`
 export const LoginForm = styled.form`
   display: grid;
   grid-row-gap: 15px;
-  margin: 0 auto;
+  margin: 10px auto;
  
 `
 
 export const LoginImg = styled.img`
 
 width  : auto;
+margin: 20px 0;
 
 `
 
@@ -36,4 +31,15 @@ export const LoginInput = styled(TextField)`
 width:300px;
 
 `
+export const LoginTextSpan = styled.div`
+margin-top: 10px;
+font-size: 14px;
 
+
+`
+
+export const SpanClique = styled.span`
+
+cursor:pointer;
+
+`

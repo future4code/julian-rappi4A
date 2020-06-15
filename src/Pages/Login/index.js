@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from '../../img/logo.svg'
-import {LoginContainer, LoginImg, LoginInput} from './styles'
+import {LoginContainer, LoginImg, LoginInput, LoginTextSpan,SpanClique} from './styles'
 import { LoginForm } from "./styles";
 import { useForm} from '../../hooks/useForm'
 import { Button } from "@material-ui/core";
 import { ThemeProvider  } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
+import TitlePage from '../../Components/TitlePage'
 
   
 function Login() {
@@ -20,6 +21,7 @@ function Login() {
     <LoginContainer >
       
     <LoginImg src={logo} alt={'logo'} />    
+    <TitlePage title={'Entrar'}/>
     <LoginForm>
     <ThemeProvider theme={theme}>
         <LoginInput
@@ -40,12 +42,18 @@ function Login() {
           variant="outlined"
          />
         
-        <Button variant={"contained"} color={"primary"} type={"submit"} className={classes.color}>
-          ENTRAR
+        <Button
+        classes={{
+          root: classes.root, 
+          label: classes.label}}        
+        variant={"contained"}
+        color={"primary"} 
+        type={"submit"}>
+          Entrar
         </Button>
         </ThemeProvider>        
       </LoginForm>
-      
+      <LoginTextSpan><span>Não Possui cadastro? </span><SpanClique>Clique aqui.</SpanClique></LoginTextSpan>
     </LoginContainer>
   );
 }
