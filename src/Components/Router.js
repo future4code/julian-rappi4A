@@ -12,8 +12,8 @@ import Intro from '../Pages/Intro';
 import EditSignUp from '../Pages/EditSignUp'
 
 function Router() {
-    return (
-        <BrowserRouter>
+    return ( 
+    <BrowserRouter>
             <Switch>
                 <Route exact path='/cart'>
                     <Cart />
@@ -38,11 +38,12 @@ function Router() {
                 </Route>
                 <Route exact path='/edit-signup'>
                     <EditSignUp />
+                    </Route>
                 <Route exact path='/'>
                     <Intro />
                 </Route>
                 <Route exact path='/login'>
-                    <Login />
+                    <Login />                    
                 </Route>
             </Switch>
         </BrowserRouter>
