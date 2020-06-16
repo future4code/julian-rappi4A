@@ -23,9 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Container >
-        <Header />
           <Router />
-        <Footer />
       </Container>
     </ThemeProvider>
   );
