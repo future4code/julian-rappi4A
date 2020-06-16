@@ -1,45 +1,138 @@
 import React from 'react';
-import { Container, Nav, ImgSignup, Forms, InputSignup } from './styled';
+import { Container, Nav, ArrowBackIosStyled, ImgSignup, Titulo, Forms, InputSignup } from './styled';
 import Button from '@material-ui/core/Button';
-import logoRappi from './logo-future-eats-invert.png'
-  
+import logoRappi from './logo-future-eats-invert.png';
+import { FormControl, InputLabel, OutlinedInput, IconButton, InputAdornment } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  label: {
+    textTransform: 'capitalize',
+  },
+});
 function SignUp() {
+  const classes = useStyles();
+  const [values, setValues] = React.useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false
+  });
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
   return (
     <Container>
       <Nav>
-        <Button variant="contained">Voltar</Button>
+        <ArrowBackIosStyled/>
       </Nav>
       <ImgSignup src={logoRappi}/>        
-      <p>Cadastrar</p>
-      <Forms>
+      <Titulo>Cadastrar</Titulo>
+      <Forms onSubmit={'Submit'}>
         <InputSignup
+          required
           label="Nome"
-          defaultValue="Nome e Sobrenome"
+          type="text"
+          placeholder="Nome e Sobrenome"
           variant="outlined"
+          InputLabelProps={{
+            shrink: true
+          }}
         />
         <InputSignup
+          required
           label="E-mail"
-          defaultValue="email@email.com"
+          type="email"
+          placeholder="email@email.com"
           variant="outlined"
+          InputLabelProps={{
+            shrink: true
+          }}
         />
         <InputSignup
+          required
           label="CPF"
-          defaultValue="000.000.000-00"
+          placeholder="000.000.000-00"
           variant="outlined"
+          InputLabelProps={{
+            shrink: true
+          }}
         />
-        <InputSignup
+        <FormControl
+          required
+          variant="outlined"
           label="Senha"
-          defaultValue="Mínimo 6 caracteres"
+          placeholder="Mínimo 6 caracteres"
+        >
+          <InputLabel shrink={true} >
+            Senha
+          </InputLabel>
+          <OutlinedInput
+            type={values.showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={handleChange("password")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
+        <FormControl
+          required
           variant="outlined"
-          type="password"
-        />
-        <InputSignup
           label="Confirmar"
-          defaultValue="Confirme a senha anterior"
-          variant="outlined"
-          type="password"
-        />
-        <Button variant="contained">Criar</Button>
+          placeholder="Confirme a senha anterior"
+          shrink={true} 
+        >
+          <InputLabel shrink={true} >
+            Confirmar
+          </InputLabel>
+          <OutlinedInput
+            type={values.showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={handleChange("password")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
+        <Button 
+          variant="contained" 
+          type={'submit'}
+          color='primary'
+          classes={{label: classes.label}}
+          >Criar
+          </Button>
       </Forms>
     
     </Container>
