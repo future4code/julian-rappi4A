@@ -10,14 +10,14 @@ const Container = styled.div`
 const DivFooter = styled.div`
   position: fixed;
   bottom: 0;
+  left: 0;
   display:flex;
   justify-content:center;
-
   align-items:center;
   font-family: Roboto;
   font-size: 16px;
   width: 360px;
-  height: 64px;
+  height: 49px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);

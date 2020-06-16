@@ -39,7 +39,7 @@ font-size: 14px;
 `
 
 export const SpanClique = styled.span`
-
+text-decoration:none;
 cursor:pointer;
 
 `
