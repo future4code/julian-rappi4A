@@ -1,8 +1,9 @@
 import React from 'react';
 import Styled from 'styled-components'
 import Router from './Components/Router';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
 
 const theme = createMuiTheme({
   palette: {
@@ -22,7 +23,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Container >
-        <Router />
+        <Header />
+          <Router />
+        <Footer />
       </Container>
     </ThemeProvider>
   );

@@ -26,9 +26,7 @@ function Home() {
   return (
     <Container >
 
-      <DivTitle>
-        <Title>Rappi4</Title>
-      </DivTitle>
+
       <DivInput>
         <TextField
           fullWidth
