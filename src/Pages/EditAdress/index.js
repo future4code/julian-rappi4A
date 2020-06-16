@@ -25,6 +25,7 @@ function EditAdress() {
     <Container>
       <Header>
         <ArrowBackIosStyled />
+        <Label>Endereco</Label>
       </Header>
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
@@ -32,9 +33,9 @@ function EditAdress() {
             required
             type={'text'}
             placeholder={'Rua/ Av.'}
-            name={'name'}
+            name={'logradouro'}
             label="Logradouro"
-            value={form.name}
+            value={form.logradouro}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -42,9 +43,9 @@ function EditAdress() {
             required
             type={'number'}
             placeholder={'Numero.'}
-            name={'name'}
+            name={'numero'}
             label="Numero"
-            value={form.name}
+            value={form.numero}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -52,9 +53,9 @@ function EditAdress() {
             required
             type={'text'}
             placeholder={'Complemento.'}
-            name={'name'}
+            name={'complemento'}
             label="Complemento"
-            value={form.name}
+            value={form.complemento}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -62,9 +63,9 @@ function EditAdress() {
             required
             type={'text'}
             placeholder={'Bairro.'}
-            name={'name'}
+            name={'bairro'}
             label="Bairro"
-            value={form.name}
+            value={form.bairro}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -72,9 +73,9 @@ function EditAdress() {
             required
             type={'text'}
             placeholder={'Cidade.'}
-            name={'name'}
+            name={'cidade'}
             label="Cidade"
-            value={form.name}
+            value={form.cidade}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -82,9 +83,9 @@ function EditAdress() {
             required
             type={'text'}
             placeholder={'Estado.'}
-            name={'name'}
+            name={'estado'}
             label="Estado"
-            value={form.name}
+            value={form.estado}
             variant="outlined"
             onChange={onChangeInput}
           />
