@@ -20,8 +20,8 @@ const Container = Styled.div`
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Container >        
-          <Router />        
+      <Container >
+          <Router />
       </Container>
     </ThemeProvider>
   );
