@@ -1,4 +1,4 @@
-import styled from 'styled-components' 
+import styled from 'styled-components'
 
 export const Container = styled.div`
      width:100vw;
@@ -39,7 +39,6 @@ export const ScrollyngItem = styled.div`
 export const RestaurantList = styled.div`
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     padding: 0 16px;  
 
@@ -50,9 +49,7 @@ export const RestaurantCard = styled.div`
     margin-bottom:8px;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
-
-
-
+ 
 `
 export const CardHeader = styled.div`
      min-height: 120px;
