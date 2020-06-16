@@ -4,8 +4,10 @@ import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
+import { useHistory } from 'react-router-dom'
 
 function EditSignUp() {
+  const history = useHistory()
   const classes = useStyles()
   const [form, onChangeInput] = useForm({
     name: '',
@@ -15,6 +17,7 @@ function EditSignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    history.push('/perfil')
   }
 
   return (
