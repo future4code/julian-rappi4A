@@ -4,87 +4,57 @@ import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
+import { useHistory } from 'react-router-dom'
 
-
-function EditAdress() {
+function EditSignUp() {
+  const history = useHistory()
   const classes = useStyles()
   const [form, onChangeInput] = useForm({
-    logradouro: '',
-    numero: '',
-    complemento: '',
-    bairro: '',
-    cidade: '',
-    estado: ''
+    name: '',
+    email: '',
+    cpf: ''
   })
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    history.push('/perfil')
   }
 
   return (
     <Container>
       <Header>
         <ArrowBackIosStyled />
+        <Label>Editar</Label>
       </Header>
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
           <TextField
             required
             type={'text'}
-            placeholder={'Rua/ Av.'}
+            placeholder={'Nome e sobrenome'}
             name={'name'}
-            label="Logradouro"
+            label="Nome"
             value={form.name}
+            variant="outlined"
+            onChange={onChangeInput}
+          />
+          <TextField
+            required
+            type={'email'}
+            placeholder={'email@email.com'}
+            name={'email'}
+            label="E-mail"
+            value={form.email}
             variant="outlined"
             onChange={onChangeInput}
           />
           <TextField
             required
             type={'number'}
-            placeholder={'Numero.'}
-            name={'name'}
-            label="Numero"
-            value={form.name}
-            variant="outlined"
-            onChange={onChangeInput}
-          />
-          <TextField
-            required
-            type={'text'}
-            placeholder={'Complemento.'}
-            name={'name'}
-            label="Complemento"
-            value={form.name}
-            variant="outlined"
-            onChange={onChangeInput}
-          />
-          <TextField
-            required
-            type={'text'}
-            placeholder={'Bairro.'}
-            name={'name'}
-            label="Bairro"
-            value={form.name}
-            variant="outlined"
-            onChange={onChangeInput}
-          />
-          <TextField
-            required
-            type={'text'}
-            placeholder={'Cidade.'}
-            name={'name'}
-            label="Cidade"
-            value={form.name}
-            variant="outlined"
-            onChange={onChangeInput}
-          />
-          <TextField
-            required
-            type={'text'}
-            placeholder={'Estado.'}
-            name={'name'}
-            label="Estado"
-            value={form.name}
+            placeholder={'000.000.000-00'}
+            name={'cpf'}
+            label="CPF"
+            value={form.cpf}
             variant="outlined"
             onChange={onChangeInput}
           />
@@ -104,4 +74,4 @@ function EditAdress() {
   );
 }
 
-export default EditAdress;
+export default EditSignUp;
