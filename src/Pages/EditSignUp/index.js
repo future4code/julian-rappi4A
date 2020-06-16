@@ -1,43 +1,9 @@
 import React from 'react';
-import Styled from 'styled-components'
-import { TextField, Button } from '@material-ui/core'
-import { ArrowBackIos } from '@material-ui/icons'
+import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled, Label } from'./style' 
+import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
-
-const Container = Styled.div`
-  max-width: 400px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-const Form = Styled.form`
-  display: grid;
-  gap: 16px;
-  padding: 16px;
-`
-const ButtonStyled = Styled(Button)`
-  height: 42px;
-`
-const Header = Styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 44px;
-  border-bottom: 1px solid gray;
-`
-const ArrowBackIosStyled = Styled(ArrowBackIos)`
-  padding: 0 16px;
-`
-const Label = Styled.label`
-  position: absolute;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, 0);
-`
 
 function EditSignUp() {
   const classes = useStyles()
