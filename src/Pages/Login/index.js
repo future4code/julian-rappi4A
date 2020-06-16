@@ -8,7 +8,7 @@ import { ThemeProvider  } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
 import TitlePage from '../../Components/TitlePage'
 import { Link, useHistory } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import { baseUrl } from '../../Components/Configs';
 
   
@@ -21,14 +21,15 @@ function Login() {
     password:''
   })
 
-  const onSubmitLogin = () => {    
+  const onSubmitLogin = (event) => {    
+    event.preventDefault()
 
     const body = {
       email:form.email,
       password:form.password
     }
 
-    Axios.post(`${baseUrl}/login`, body)
+    axios.post(`${baseUrl}/login`, body)
     .then(result => {
       window.localStorage.setItem('token', result.data.token)
       history.push('/home')
@@ -37,7 +38,7 @@ function Login() {
     .catch(erro => {
       alert('Falha ao efetuar login!')
     })
-    
+
 
         
   }
