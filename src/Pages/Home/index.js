@@ -16,8 +16,8 @@ import {
   RestaurantShipping
 } from './styles'
 import TextField from '@material-ui/core/TextField';
-
-
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -25,7 +25,7 @@ import SearchIcon from "@material-ui/icons/Search";
 function Home() {
   return (
     <Container >
-
+      <Header/>
 
       <DivInput>
         <TextField
@@ -95,6 +95,7 @@ function Home() {
 
       </RestaurantList>
 
+      <Footer/>
     </Container>
   );
 }
