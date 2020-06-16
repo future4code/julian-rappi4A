@@ -6,24 +6,7 @@ export const Container = styled.div`
 
 
 `
-export const DivTitle = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width: 360px;
-  height: 44px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-  background-color: var(--white);
-  font-family: Roboto;
-  font-size: 16px;
 
-`
-export const Title = styled.h1`
-    font-size: 16px;
-    font-weight:400;
-`
 
 export const DivInput = styled.div`
     margin:0 auto;
