@@ -9,9 +9,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 background-color: #e86e5a;
-width: 360px;
-height: 640px;
-transition: 400ms;
+width: 100%;
+height: 100vh;
+transition: 800ms;
 `
   
 function Intro() {
