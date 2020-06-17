@@ -55,13 +55,13 @@ const ProfileButton = styled.button`
 `
 
 export default function index() {
-    return (
-        <Container>
-            <DivFooter>
-            <HomeButton><img src={HomeIcon} alt="Home"/></HomeButton>
-                <CardButton><img src={CardIcon} alt="Seu carrinho"/></CardButton>
-                <ProfileButton><img src={ProfileIcon} alt="Seu perfil"/></ProfileButton>
-            </DivFooter>
-        </Container>
-    )
+  return (
+    <Container>
+      <DivFooter>
+        <HomeButton><img src={HomeIcon} alt="Home" /></HomeButton>
+        <CardButton><img src={CardIcon} alt="Seu carrinho" /></CardButton>
+        <ProfileButton><img src={ProfileIcon} alt="Seu perfil" /></ProfileButton>
+      </DivFooter>
+    </Container>
+  )
 }

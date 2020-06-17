@@ -24,7 +24,7 @@ function App() {
     <ThemeProvider theme={theme}>      
       <Container >
           <Router />
-      </Container>      
+      </Container>
     </ThemeProvider>
     </BrowserRouter>
   );

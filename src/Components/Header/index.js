@@ -19,7 +19,6 @@ export const DivTitle = styled.div`
 export const Title = styled.h1`
   width: 48px;
   height: 19px;
-  font-family: Roboto;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
