@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   DivInput,
@@ -16,10 +16,28 @@ import {
 import TextField from '@material-ui/core/TextField';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import {baseUrl} from '../../Components/Configs';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import axios from 'axios'
 
 function Home() {
+
+  const [restaurants, setRestaurants ] = useState([])
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/restaurants`, {
+      headers: {
+        auth: localStorage.getItem('token')
+      }
+    }).then(res => {
+      setRestaurants(res.data.restaurants)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+  console.log(restaurants)
+
   return (
     <Container >
       <Header/>
@@ -40,55 +58,33 @@ function Home() {
           }}
         />
       </DivInput>
-
+          
          <Scrollyng >
+          {restaurants.map((menu) => {
+            return <ScrollyngItem>{menu.category}</ScrollyngItem>
 
-          <ScrollyngItem>Hamburguer</ScrollyngItem>
-          <ScrollyngItem>Árabe</ScrollyngItem>
-          <ScrollyngItem>Asiatica</ScrollyngItem>
-          <ScrollyngItem>Italiana</ScrollyngItem>
-          <ScrollyngItem>Sorvetes</ScrollyngItem>
-          <ScrollyngItem>Carnes</ScrollyngItem>
-          <ScrollyngItem>Baiana</ScrollyngItem>
-          <ScrollyngItem>Petiscos</ScrollyngItem>
-          <ScrollyngItem>Mexicana</ScrollyngItem>
-          <ScrollyngItem>Item10</ScrollyngItem>
+          })} 
           </Scrollyng>
 
  
       <RestaurantList>
-        <RestaurantCard>
-          <CardHeader><img src="https://picsum.photos/326/160" alt="sss" /></CardHeader>
-          <CardFooter>
-            <RestaurantName>Vinil Butantâ</RestaurantName>
-            <RestaurantInfos>
-              <RestaurantTime>50 - 60 min</RestaurantTime>
-              <RestaurantShipping>Frete R$ 12.00</RestaurantShipping>
-            </RestaurantInfos>
-          </CardFooter>
-        </RestaurantCard>
+        {restaurants.map((restaurant) => {
+          return (
 
-        <RestaurantCard>
-          <CardHeader><img src="https://picsum.photos/326/160" alt="sss" /></CardHeader>
-          <CardFooter>
-            <RestaurantName>Mc Donalds</RestaurantName>
-            <RestaurantInfos>
-              <RestaurantTime>50 - 60 min</RestaurantTime>
-              <RestaurantShipping>Frete R$ 12.00</RestaurantShipping>
-            </RestaurantInfos>
-          </CardFooter>
-        </RestaurantCard>
-
-        <RestaurantCard>
-          <CardHeader><img src="https://picsum.photos/326/160" alt="sss" /></CardHeader>
-          <CardFooter>
-            <RestaurantName>Saladenhas</RestaurantName>
-            <RestaurantInfos>
-              <RestaurantTime>50 - 60 min</RestaurantTime>
-              <RestaurantShipping>Frete R$ 12.00</RestaurantShipping>
-            </RestaurantInfos>
-          </CardFooter>
-        </RestaurantCard>
+            <RestaurantCard>
+            <CardHeader><img src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+            <CardFooter>
+          <RestaurantName >{restaurant.name}</RestaurantName>
+              <RestaurantInfos>
+                <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
+          <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
+              </RestaurantInfos>
+            </CardFooter>
+          </RestaurantCard>
+          )
+        } )}
+    
+ 
 
       </RestaurantList>
 

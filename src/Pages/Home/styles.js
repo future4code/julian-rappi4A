@@ -58,9 +58,9 @@ export const RestaurantCard = styled.div `
  
 `
 export const CardHeader = styled.div `
-     min-height: 120px;
-    
-
+    height: 120px;
+    min-width: 328px;
+ 
 
 
 
