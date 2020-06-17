@@ -1,19 +1,21 @@
-import styled from 'styled-components' 
+import styled from 'styled-components'
 
-export const Container = styled.div`
-     width:100vw;
-    height:100vh;
-
+export const Container = styled.div `
+    display:flex;
+    flex-direction: column;
+    width  :100%;
+    justify-content: center;
+    align-items: center;
 
 `
 
 
-export const DivInput = styled.div`
+export const DivInput = styled.div `
     margin:0 auto;
     width:328px;
 `
 
-export const Scrollyng = styled.div`
+export const Scrollyng = styled.div `
     text-align:center;
 
     width:360px;
@@ -22,9 +24,13 @@ export const Scrollyng = styled.div`
     overflow-y:hidden;
     white-space:nowrap;
     margin-bottom:8px;
+    scrollbar-face-color:red;
+
+}
+
  
 `
-export const ScrollyngItem = styled.div`
+export const ScrollyngItem = styled.div `
     margin:0 auto;
     padding:10px;
     display:inline-block;
@@ -36,25 +42,22 @@ export const ScrollyngItem = styled.div`
 
 
 `
-export const RestaurantList = styled.div`
+export const RestaurantList = styled.div `
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     padding: 0 16px;  
 
 `
-export const RestaurantCard = styled.div`
+export const RestaurantCard = styled.div `
     width:328px;
     min-height: 188px;
     margin-bottom:8px;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
-
-
-
+ 
 `
-export const CardHeader = styled.div`
+export const CardHeader = styled.div `
      min-height: 120px;
     
 
@@ -62,7 +65,7 @@ export const CardHeader = styled.div`
 
 
 `
-export const CardFooter = styled.div`
+export const CardFooter = styled.div `
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -72,28 +75,28 @@ export const CardFooter = styled.div`
 
 
 `
-export const RestaurantName = styled.div`
+export const RestaurantName = styled.div `
     display:flex;
     justify-content:flex-start;
     color: #e86e5a;
     padding-bottom:4px;
 
 `
-export const RestaurantInfos = styled.div`
+export const RestaurantInfos = styled.div `
     display:flex;
     justify-content:space-between;
     color: #b8b8b8;
 
 
 `
-export const RestaurantTime = styled.div`
+export const RestaurantTime = styled.div `
 
 
 
 `
-export const RestaurantShipping = styled.div`
+export const RestaurantShipping = styled.div `
 
 
 
 
-` 
+`

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import styled from 'styled-components';
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Cart from '../Pages/Cart'
 import EditAdress from '../Pages/EditAdress'
 import Home from '../Pages/Home'
@@ -11,10 +13,55 @@ import SignUp from '../Pages/SignUp'
 import Intro from '../Pages/Intro';
 import EditSignUp from '../Pages/EditSignUp'
 
-function Router() {
+
+
+const AppContainer = styled.div`
+  .fade-enter {
+    opacity: 0.01;
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+
+  .fade-exit {
+    opacity: 1;
+  }
+
+  .fade-exit.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+
+  div.transition-group {
+    
+  }
+
+  section.route-section {
+    margin:0 auto;
+    width: 100vw;
+    
+  }
+`;
+
+
+
+
+function Router({ location }) {
     return ( 
-    <BrowserRouter>
-            <Switch>
+        <AppContainer>
+        <TransitionGroup className="transition-group">
+          <CSSTransition
+            key={location.key}
+            timeout={{ enter: 300, exit: 300 }}
+            classNames="fade"
+          >
+      
+      
+     
+      <section className="route-section">
+      <Switch location={location}>
                 <Route exact path='/cart'>
                     <Cart />
                 </Route>
@@ -39,15 +86,19 @@ function Router() {
                 <Route exact path='/edit-signup'>
                     <EditSignUp />
                     </Route>
-                <Route exact path='/'>
-                    <Intro />
-                </Route>
-                <Route exact path='/login'>
-                    <Login />                    
-                </Route>
+                <Route exact path='/' component={Intro}/>
+                    
+                
+                <Route exact path='/login' component={Login} />
+                 
             </Switch>
-        </BrowserRouter>
+            </section>
+    
+    
+    </CSSTransition>
+      </TransitionGroup>
+    </AppContainer>
     );
 }
 
-export default Router;
+export default withRouter(Router)

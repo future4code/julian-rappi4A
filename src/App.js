@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components'
 import Router from './Components/Router';
+import {  BrowserRouter } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -19,11 +20,13 @@ const Container = Styled.div`
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <BrowserRouter>
+    <ThemeProvider theme={theme}>      
       <Container >
-        <Router />
+          <Router />
       </Container>
     </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
