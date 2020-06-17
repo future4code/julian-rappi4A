@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled, Label } from './style'
+import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled } from './style'
 import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';

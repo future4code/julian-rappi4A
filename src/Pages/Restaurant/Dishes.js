@@ -28,6 +28,17 @@ function Restaurant() {
                     <ButtonAdd><Modal handleQuantity={handleQuantity} /></ButtonAdd>
                 </WriterDish>
             </ContainerDishes>
+            <Category>Principais</Category>
+            <ContainerDishes>
+                <DishImg src={'https://picsum.photos/id/1/200/300'} alt={'Prato'} />
+                <WriterDish>
+                    <DishName>Bullguer</DishName>
+                    <Ingredients>Pão, carne, queijo, cebola roxa, tomate, alface e molho.</Ingredients>
+                    <Price>R$23,00</Price>
+                    {quantityVisible}
+                    <ButtonAdd><Modal handleQuantity={handleQuantity} /></ButtonAdd>
+                </WriterDish>
+            </ContainerDishes>
         </ContainerDetails>
     );
 }

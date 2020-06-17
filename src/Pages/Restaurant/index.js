@@ -5,11 +5,12 @@ import {
   Adress
 } from './style'
 import Dishes from './Dishes'
+import OrderInProgress from '../../Components/OrderInProgress'
 
 function Restaurant() {
 
   return (
-    <Container >
+    <Container>
       <Header>
         <ArrowBackIosStyled />
         <Label>Restaurante</Label>
@@ -25,6 +26,7 @@ function Restaurant() {
         <Adress>R. Fradique Coutinho, 1136 - Vila Madalena</Adress>
       </Details>
       <Dishes />
+      <OrderInProgress />
     </Container>
   );
 }
