@@ -13,7 +13,8 @@ const DivFooter = styled.div`
   display:flex;
   justify-content: space-around;
   align-items:center;
-  width: 360px;
+  width: 100%;
+  max-width: 100%;
   height: 49px;
   background-color: white;
   box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2), 

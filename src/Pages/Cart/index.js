@@ -8,13 +8,12 @@ import {
   Adress,
   Main,
   Frete,
-  Amount,
-  Footer,
-} from "./styled";
+  Amount} from "./styled";
 import Button from "@material-ui/core/Button";
 import InfoRestaurant from './InfoRestaurant';
 import Card from './Card';
 import PaymentMethods from './PaymentMethods';
+import Footer from '../../Components/Footer';
 
 function Cart() {
   return (
@@ -39,7 +38,7 @@ function Cart() {
           Confirmar
         </Button>
       </Main>
-      <Footer>footer</Footer>
+      <Footer />
     </Container>
   );
 }
