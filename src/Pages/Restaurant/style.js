@@ -2,12 +2,15 @@ import Styled from 'styled-components'
 import { ArrowBackIos } from '@material-ui/icons'
 import { Modal } from '@material-ui/core';
 
+// Restaurant/index.js
+
 const Container = Styled.div`
 max-width: 400px;
 width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
+text-align: left;
 `
 const Header = Styled.div`
 width: 100%;
@@ -56,14 +59,12 @@ const Adress = Styled.label`
 `
 
 export {
-    Container, Header, ArrowBackIosStyled, Label, Details,
-    ImgPrincipal, RestaurantName, RestaurantType, Time, Freight,
-    Adress, ContainerDetails, ContainerDishes, WriterDish,
-    DishImg, DishName, Ingredients, Price, Category,
-    Quantity, AddRemoveButton, ButtonAdd
+  Container, Header, ArrowBackIosStyled, Label, Details, Time,
+  ImgPrincipal, RestaurantName, RestaurantType, Freight, Adress
 }
 
 // Dishes.js
+
 const ContainerDetails = Styled.div`
   padding: 16px;
   display: grid;
@@ -141,7 +142,13 @@ const ButtonAdd = Styled.div`
   grid-row: 4/5;
 `
 
-//Modal.js
+export {
+  ContainerDetails, ContainerDishes, WriterDish,
+  DishImg, DishName, Ingredients, Price, Category,
+  Quantity, AddRemoveButton, ButtonAdd
+}
+
+// Modal.js
 
 const DishQuantity = Styled.div`
     width: 100%;
