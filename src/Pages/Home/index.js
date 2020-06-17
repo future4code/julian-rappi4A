@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   Container,
-  DivTitle,
   DivInput,
-  Title,
   Scrollyng,
   ScrollyngItem,
   RestaurantList,
@@ -16,16 +14,15 @@ import {
   RestaurantShipping
 } from './styles'
 import TextField from '@material-ui/core/TextField';
-
-
-import IconButton from "@material-ui/core/IconButton";
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 
 function Home() {
   return (
     <Container >
-
+      <Header/>
 
       <DivInput>
         <TextField
@@ -44,8 +41,8 @@ function Home() {
         />
       </DivInput>
 
-      <Scrollyng>
-        <div>
+         <Scrollyng >
+
           <ScrollyngItem>Hamburguer</ScrollyngItem>
           <ScrollyngItem>Árabe</ScrollyngItem>
           <ScrollyngItem>Asiatica</ScrollyngItem>
@@ -56,9 +53,9 @@ function Home() {
           <ScrollyngItem>Petiscos</ScrollyngItem>
           <ScrollyngItem>Mexicana</ScrollyngItem>
           <ScrollyngItem>Item10</ScrollyngItem>
-        </div>
-      </Scrollyng>
+          </Scrollyng>
 
+ 
       <RestaurantList>
         <RestaurantCard>
           <CardHeader><img src="https://picsum.photos/326/160" alt="sss" /></CardHeader>
@@ -95,6 +92,7 @@ function Home() {
 
       </RestaurantList>
 
+      <Footer/>
     </Container>
   );
 }
