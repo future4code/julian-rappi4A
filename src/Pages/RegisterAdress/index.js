@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled } from './style'
-import { TextField } from '@material-ui/core'
+import { TextField, FormControlLabel } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
 import TitlePage from '../../Components/TitlePage'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { baseUrl } from '../../Components/Configs'
 
 function RegisterAdress() {
   const history = useHistory()
@@ -21,15 +23,36 @@ function RegisterAdress() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    history.push('/home')
+
+    axios.put(`${baseUrl}/address`, form,
+      {
+        headers: {
+          'auth': localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+
+        console.log('res: ', res)
+        localStorage.setItem('token', res.data.token)
+        history.push('/home')
+      })
+      .catch(err => {
+        window.alert('Cadastrar endereço faiou')
+        console.log(err)
+      })
+  }
+
+  const logout = () => {
+    localStorage.clear()
+    history.push('/login')
   }
 
   return (
     <Container>
       <Header>
-        <ArrowBackIosStyled />
+        <ArrowBackIosStyled onClick={logout} />
       </Header>
-      <TitlePage title={'Meu endereço'}/>
+      <TitlePage title={'Meu endereço'} />
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
           <TextField
