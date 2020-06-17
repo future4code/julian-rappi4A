@@ -14,7 +14,6 @@ const Container = styled.div`
 const DivFooter = styled.div`
   position: fixed;
   bottom: 0;
-  left: 0;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -36,6 +35,7 @@ const HomeButton = styled.button`
   width: 120px;
   height: 49px;
   border-style:none;
+  
 `
 const CardButton = styled.button` 
  
