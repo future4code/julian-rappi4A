@@ -3,22 +3,33 @@ import styled from 'styled-components'
 export const Container = styled.div `
     display:flex;
     flex-direction: column;
-    width  :100%;
     justify-content: center;
     align-items: center;
+    width:100%;
 
 `
 
 
 export const DivInput = styled.div `
     margin:0 auto;
-    width:328px;
-`
+    padding:0 16px;
+    width:90%;
 
+ `
+ export const DivMenu = styled.div `
+
+     width:100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+`
+  
 export const Scrollyng = styled.div `
     text-align:center;
-
     width:360px;
+    max-width:100%;
     height: 42px;
     overflow-x:scroll;
     overflow-y:hidden;
@@ -46,8 +57,9 @@ export const RestaurantList = styled.div `
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding: 0 16px;  
+    margin-bottom:60px;
 
+ 
 `
 export const RestaurantCard = styled.div `
     width:328px;
@@ -55,16 +67,21 @@ export const RestaurantCard = styled.div `
     margin-bottom:8px;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
- 
+    
 `
 export const CardHeader = styled.div `
-    height: 120px;
-    min-width: 328px;
- 
-
+    
 
 
 `
+export const CardHeaderImage = styled.img `
+    width:328px;
+    height: 120px;
+
+
+`
+
+
 export const CardFooter = styled.div `
     display:flex;
     flex-direction:column;

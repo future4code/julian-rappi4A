@@ -7,11 +7,13 @@ import {
   RestaurantList,
   RestaurantCard,
   CardHeader,
+  CardHeaderImage,
   CardFooter,
   RestaurantName,
   RestaurantInfos,
   RestaurantTime,
-  RestaurantShipping
+  RestaurantShipping,
+  DivMenu
 } from './styles'
 import TextField from '@material-ui/core/TextField';
 import Header from '../../Components/Header';
@@ -58,13 +60,14 @@ function Home() {
           }}
         />
       </DivInput>
-          
+      <DivMenu>
          <Scrollyng >
-          {restaurants.map((menu) => {
-            return <ScrollyngItem>{menu.category}</ScrollyngItem>
+              {restaurants.map((menu) => {
+                return <ScrollyngItem>{menu.category}</ScrollyngItem>}
+                )} 
+         </Scrollyng>
+      </DivMenu>    
 
-          })} 
-          </Scrollyng>
 
  
       <RestaurantList>
@@ -72,7 +75,7 @@ function Home() {
           return (
 
             <RestaurantCard>
-            <CardHeader><img src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+            <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
             <CardFooter>
           <RestaurantName >{restaurant.name}</RestaurantName>
               <RestaurantInfos>
