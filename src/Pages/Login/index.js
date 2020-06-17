@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../img/logo.svg'
 import {LoginContainer, LoginImg, LoginInput, LoginTextSpan,SpanClique} from './styles'
 import { LoginForm } from "./styles";
@@ -13,6 +13,7 @@ import { baseUrl } from '../../Components/Configs';
 
   
 function Login() {
+  
   const history = useHistory()
   const classes = useStyles()
 
@@ -32,7 +33,15 @@ function Login() {
     axios.post(`${baseUrl}/login`, body)
     .then(result => {
       window.localStorage.setItem('token', result.data.token)
-      history.push('/home')
+      
+      if(result.data.user.hasAddress) {
+        history.push('/home')
+      } else {
+        history.push('/register-adress')
+      }
+
+
+     
       
     })
     .catch(erro => {
