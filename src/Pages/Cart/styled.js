@@ -25,6 +25,7 @@ export const CartName = styled.p`
     font-weight: bold;
 `;
 export const Header = styled.div`
+    max-width: 100%;
     width: 100%;
     height: 76px;
     padding: 16px;
@@ -41,6 +42,7 @@ export const Adress = styled.p`
     font-weight: bold;
 `;
 export const Main = styled.div`
+    max-width: 100%;
     width: 100%;
     padding: 16px;
     display: flex;
