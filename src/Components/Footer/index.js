@@ -5,6 +5,9 @@ import CardIcon from '../../Images/card-icon.svg'
 import ProfileIcon from '../../Images/profile.svg'
 
 const Container = styled.div`
+display:flex;
+justify-content:center;
+
 `
 const DivFooter = styled.div`
   position: fixed;
