@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import TitlePage from '../../Components/TitlePage'
 import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import Footer from '../../Components/Footer'
+import Axios from 'axios';
+import {baseUrl} from '../../Components/Configs'
+import {Link} from 'react-router-dom'
 
 const PerfilContainer = styled.div`
 
@@ -142,16 +145,30 @@ function Perfil() {
 ]
 
   const [perfil,setPerfil] = useState({
-    nome: 'Joaozinho Assis',
-    email:'joaozinho@gmail.com',
-    telefone: 21999999999,
-    endereco:{
-      rua:'Rua Alessandra Vieira',
-      numero:42,
-      bairro:'Santana'
-    }
+    name: '',
+    email:'',
+    cpf: '',
+    address:''
     
   })
+
+  useEffect(() => {
+    Axios.get(`${baseUrl}/profile`, {
+      headers: {
+        auth: localStorage.getItem('token')
+      }
+    })
+    .then(result => {
+
+      setPerfil(result.data.user)
+
+    })
+
+
+  },[])
+
+    
+  
 
   return (
     <PerfilContainer >   
@@ -159,11 +176,11 @@ function Perfil() {
                       
             <PerfilInfo>
               <PerfilInfoDetalhes>
-              <p>{perfil.nome}</p>
+              <p>{perfil.name}</p>
               <p>{perfil.email}</p>
-              <p>{perfil.telefone}</p>
+              <p>{perfil.cpf}</p>
               </PerfilInfoDetalhes>
-              <PerfilInfoIcone><CreateOutlinedIcon /></PerfilInfoIcone>
+              <PerfilInfoIcone><Link to={'/edit-signup'}> <CreateOutlinedIcon /> </Link> </PerfilInfoIcone>
               
             </PerfilInfo>
             
@@ -171,9 +188,9 @@ function Perfil() {
 
             <PerfilEndDetalhes>
               <PerfilEnderecoTitulo>Endereço Cadastrado</PerfilEnderecoTitulo>
-              <PerfilEnderecoInfo>{perfil.endereco.rua},{perfil.endereco.numero} - {perfil.endereco.bairro}</PerfilEnderecoInfo>
+              <PerfilEnderecoInfo>{perfil.address}</PerfilEnderecoInfo>
             </PerfilEndDetalhes>
-              <PerfilEndIcone><CreateOutlinedIcon /></PerfilEndIcone>
+              <PerfilEndIcone><Link to={'/edit-address'}><CreateOutlinedIcon /> </Link></PerfilEndIcone>
             </PerfilEndereco>
 
             <div>

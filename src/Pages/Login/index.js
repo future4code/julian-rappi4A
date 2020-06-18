@@ -3,8 +3,9 @@ import logo from '../../img/logo.svg'
 import { LoginContainer, LoginImg, LoginInput, LoginTextSpan, SpanClique } from './styles'
 import { LoginForm } from "./styles";
 import { useForm } from '../../hooks/useForm'
-import { Button } from "@material-ui/core";
+import { Button, IconButton, InputAdornment,FormControl,InputLabel, OutlinedInput } from "@material-ui/core";
 import { ThemeProvider } from '@material-ui/core/styles';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
 import TitlePage from '../../Components/TitlePage'
 import { Link, useHistory } from 'react-router-dom';
@@ -16,9 +17,10 @@ function Login() {
   const history = useHistory()
   const classes = useStyles()
 
-  const [form, onChangeInput] = useForm({
+  const [form, onChangeInput,setForm] = useForm({
     email: '',
-    password: ''
+    password: '',
+    showPassword: false
   })
 
   const onSubmitLogin = (event) => {
@@ -41,6 +43,14 @@ function Login() {
 
   }
 
+  const clickShowPassword = () => {
+     setForm({...form, showPassword: !form.showPassword})
+  }
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
   return (
     <LoginContainer >
 
@@ -58,15 +68,30 @@ function Login() {
             variant="outlined"
             required
           />
-          <LoginInput
-            type={"password"}
-            label={"Senha"}
+
+         <FormControl variant="outlined" required>
+            <InputLabel>Senha</InputLabel>
+            <OutlinedInput
+            name={'password'}
+            type={form.showPassword ? 'text' : 'password'}
+            value={form['password']}
             onChange={onChangeInput}
-            value={form["password"]}
-            name={"password"}
-            variant="outlined"
-            required
-          />
+            endAdornment={
+              <InputAdornment position='end'>
+                <IconButton
+                aria-label="toggle password visibility"
+                onClick={clickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge='end'
+                >
+                  {form.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+              labelWidth={60}
+              />
+
+         </FormControl>
 
           <Button
             classes={{
