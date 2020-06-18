@@ -22,10 +22,11 @@ import {baseUrl} from '../../Components/Configs';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from 'axios'
+import { useHistory } from 'react-router-dom';
  
  
 function Home() {
- 
+  const history = useHistory()
   const [SearchRestaurant, setSearchRestaurant] = useState("")
   const [restaurants, setRestaurants ] = useState([])
 
@@ -43,7 +44,9 @@ function Home() {
     })
   }, [])
 
-
+  const goToRestaurant = (id) => {
+    history.push(`/restaurant/${id}`)
+  }
   
   return (
  
@@ -86,7 +89,7 @@ function Home() {
         {restaurants.map((restaurant) => {
           return (
 
-            <RestaurantCard>
+            <RestaurantCard onClick={() => goToRestaurant(restaurant.id)}>
             <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
             <CardFooter>
           <RestaurantName >{restaurant.name}</RestaurantName>

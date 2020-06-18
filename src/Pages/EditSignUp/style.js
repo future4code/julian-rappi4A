@@ -8,6 +8,7 @@ width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
+margin: auto;
 `
 const Form = Styled.form`
 display: grid;
@@ -18,7 +19,6 @@ const ButtonStyled = Styled(Button)`
 height: 42px;
 `
 const Header = Styled.div`
-width: 100%;
 display: flex;
 justify-content: space-between;
 align-items: center;
