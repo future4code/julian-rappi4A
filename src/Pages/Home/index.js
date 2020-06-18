@@ -22,9 +22,11 @@ import {baseUrl} from '../../Components/Configs';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from 'axios'
-
+ 
+ 
 function Home() {
-
+ 
+  const [SearchRestaurant, setSearchRestaurant] = useState("")
   const [restaurants, setRestaurants ] = useState([])
 
   useEffect(() => {
@@ -34,20 +36,29 @@ function Home() {
       }
     }).then(res => {
       setRestaurants(res.data.restaurants)
+      console.log(res.data.restaurants)
+
     }).catch(err => {
       console.log(err)
     })
   }, [])
-  console.log(restaurants)
 
+
+  
   return (
+ 
     <Container >
+
+
+ 
       <Header/>
 
       <DivInput>
         <TextField
+          name='SearchInput'
           fullWidth
           placeholder="Restaurante"
+          onChange={e => setSearchRestaurant(e.target.value)}
           type="search"
           variant="outlined"
           margin="normal"
@@ -67,6 +78,7 @@ function Home() {
                 )} 
          </Scrollyng>
       </DivMenu>    
+
 
 
  
