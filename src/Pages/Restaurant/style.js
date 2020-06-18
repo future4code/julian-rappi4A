@@ -43,15 +43,15 @@ const ImgPrincipal = Styled.img`
 const RestaurantName = Styled.label`
   color: #e86e5a;
 `
-const RestaurantType = Styled.label`
+const RestaurantCategory = Styled.label`
   color: #b8b8b8;
 `
 const Time = Styled.label`
   width: 104px;
-  margin-right: 8px;
+  margin-right: 32px;
   color: #b8b8b8;
 `
-const Freight = Styled.label`
+const Shipping = Styled.label`
   color: #b8b8b8;
 `
 const Adress = Styled.label`
@@ -60,7 +60,7 @@ const Adress = Styled.label`
 
 export {
   Container, Header, ArrowBackIosStyled, Label, Details, Time,
-  ImgPrincipal, RestaurantName, RestaurantType, Freight, Adress
+  ImgPrincipal, RestaurantName, RestaurantCategory, Shipping, Adress
 }
 
 // Dishes.js
