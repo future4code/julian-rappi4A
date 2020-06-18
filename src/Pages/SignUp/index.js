@@ -49,7 +49,8 @@ function SignUp() {
               headers: {'Content-Type': 'application/json'}
           })
           .then(resposta => {
-              history.push("/register-adress")
+              history.push("/register-adress");
+              localStorage.setItem("token", resposta.data.token);
           })
           .catch(error => {
               console.log("Deu erro", error);
