@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container, Header, ArrowBackIosStyled, Label, Details,
-  ImgPrincipal, RestaurantName, RestaurantType, Time, Freight,
+  ImgPrincipal, RestaurantName, RestaurantCategory, Time, Shipping,
   Adress
 } from './style'
 import Dishes from './Dishes'
 import OrderInProgress from '../../Components/OrderInProgress'
+import axios from 'axios';
+import { baseUrl } from '../../Components/Configs'
+import { useParams } from 'react-router-dom';
 
 function Restaurant() {
+  const pathParam = useParams()
+  const [restaurantData, setRestaurantData] = useState({})
+
+  useEffect(() => {
+
+    axios.get(`${baseUrl}/restaurants/${pathParam.id}`, {
+      headers: { auth: localStorage.getItem('token') }
+    })
+      .then(res => {
+        console.log(res.data)
+        setRestaurantData(res.data.restaurant)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <Container>
@@ -16,14 +35,14 @@ function Restaurant() {
         <Label>Restaurante</Label>
       </Header>
       <Details>
-        <ImgPrincipal src={'https://picsum.photos/id/1/200/300'} alt={'restaurante'} />
-        <RestaurantName>Bullguer Vila Madalena</RestaurantName>
-        <RestaurantType>Burger</RestaurantType>
+        <ImgPrincipal src={restaurantData.logoUrl} alt={'restaurante'} />
+        <RestaurantName>{restaurantData.name}</RestaurantName>
+        <RestaurantCategory>{restaurantData.category}</RestaurantCategory>
         <div>
-          <Time>50 - 60 min</Time>
-          <Freight>Frete R$6,00</Freight>
+          <Time>{restaurantData.deliveryTime} min</Time>
+          <Shipping>Frete R$ {restaurantData.shipping}.00</Shipping>
         </div>
-        <Adress>R. Fradique Coutinho, 1136 - Vila Madalena</Adress>
+        <Adress>{restaurantData.address}</Adress>
       </Details>
       <Dishes />
       <OrderInProgress />

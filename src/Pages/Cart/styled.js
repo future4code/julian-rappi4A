@@ -6,51 +6,50 @@ export const Container = styled.div`
     max-width: 400px;
     width: 100%;
     height: 781px;
-    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    text-align: left;
+    margin: auto;
 `;
 export const Nav = styled.div`
-    width: 100%;
-    height: 44px;
-    padding: 16px;
+    padding: 13px 0 12px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 `;
 export const CartName = styled.p`
+    width: 100%;
     font-weight: bold;
 `;
 export const Header = styled.div`
-    max-width: 100%;
+    text-align: left;
     width: 100%;
-    height: 76px;
-    padding: 16px;
+    padding: 16px 0;
     background: #eeeeee;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    gap: 8px;
 `;
 export const TitleAdress = styled.p`
     color: #b8b8b8;
+    padding-left: 16px;
 `;
 export const Adress = styled.p`
     color: black;
     font-weight: bold;
+    padding-left: 16px;
 `;
 export const Main = styled.div`
-    max-width: 100%;
-    width: 100%;
     padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 `;
 export const InfoContainer = styled.div`
-    width: 100%;
+    display: grid;
+    gap: 8px;
 `;
 export const RestaurantName = styled.p`
     color: #e86e5a;

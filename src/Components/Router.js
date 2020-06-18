@@ -65,7 +65,7 @@ function Router({ location }) {
                 <Route exact path='/cart'>
                     <Cart />
                 </Route>
-                <Route exact path='/edit-adress'>
+                <Route exact path='/edit-address'>
                     <EditAdress />
                 </Route>
                 <Route exact path='/home'>
@@ -77,7 +77,7 @@ function Router({ location }) {
                 <Route exact path='/register-adress'>
                     <RegisterAdress />
                 </Route>
-                <Route exact path='/restaurant'>
+                <Route exact path='/restaurant/:id'>
                     <Restaurant />
                 </Route>
                 <Route exact path='/signup'>

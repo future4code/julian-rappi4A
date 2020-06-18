@@ -3,8 +3,9 @@ import logo from '../../img/logo.svg'
 import { LoginContainer, LoginImg, LoginInput, LoginTextSpan, SpanClique } from './styles'
 import { LoginForm } from "./styles";
 import { useForm } from '../../hooks/useForm'
-import { Button } from "@material-ui/core";
+import { Button, IconButton, InputAdornment,FormControl,InputLabel, OutlinedInput } from "@material-ui/core";
 import { ThemeProvider } from '@material-ui/core/styles';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
 import TitlePage from '../../Components/TitlePage'
 import { Link, useHistory } from 'react-router-dom';
@@ -16,13 +17,19 @@ function Login() {
   const history = useHistory()
   const classes = useStyles()
 
-  const [form, onChangeInput] = useForm({
+  const [form, onChangeInput,setForm] = useForm({
     email: '',
-    password: ''
+    password: '',
+    showPassword: false
   })
 
   const onSubmitLogin = (event) => {
     event.preventDefault()
+
+    const body = {
+      email: form.email,
+      password: form.password
+    }
 
     axios.post(`${baseUrl}/login`, form)
       .then(result => {
@@ -41,6 +48,14 @@ function Login() {
 
   }
 
+  const clickShowPassword = () => {
+     setForm({...form, showPassword: !form.showPassword})
+  }
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
   return (
     <LoginContainer >
 
@@ -48,25 +63,39 @@ function Login() {
       <TitlePage title={'Entrar'} />
       <LoginForm onSubmit={onSubmitLogin}>
         <ThemeProvider theme={theme}>
-          <LoginInput
+          <LoginInput 
+          InputLabelProps={{
+            shrink: true,          }}     
             type={"email"}
-            label={"E-mail"}
-            color={"primary"}
+            label={"E-mail"}            
             onChange={onChangeInput}
             value={form["email"]}
             name={"email"}
             variant="outlined"
+            placeholder="email@email.com"
             required
           />
-          <LoginInput
-            type={"password"}
-            label={"Senha"}
-            onChange={onChangeInput}
-            value={form["password"]}
-            name={"password"}
-            variant="outlined"
-            required
-          />
+
+         <LoginInput 
+        InputLabelProps={{
+          shrink: true }}
+          type={form.showPassword ? "text" : "password"}
+          onChange={onChangeInput}
+          name={"password"}
+          label={'Senha'}
+          variant="outlined"
+          placeholder="Mínimo 6 caracteres"          
+          InputProps={{
+            endAdornment: 
+            <InputAdornment position="end">
+              <IconButton onClick={clickShowPassword}> {form.showPassword ? <Visibility /> : <VisibilityOff />
+              }</IconButton>
+            </InputAdornment>
+          }}
+          required
+        
+         
+         />
 
           <Button
             classes={{
