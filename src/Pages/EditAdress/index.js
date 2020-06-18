@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled, Label } from'./style' 
 import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
@@ -6,26 +6,29 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
 import axios from 'axios' 
 import { baseUrl } from '../../Components/Configs';
+import { Link , useHistory } from 'react-router-dom';
 
 
 
 function EditAdress() {
+
+  const history = useHistory()
 
 useEffect(() => {
 axios.get(`${baseUrl}/profile/address`, {
   headers:{
     auth: localStorage.getItem("token")
   } }).then(res => {   
-    setAddress(res.data.address)
+    setForm(res.data.address)
     
   })
   
 },[])
 
-const [address, setAddress] = useState({})
+
 
   const classes = useStyles()
-  const [form, onChangeInput] = useForm({
+  const [form, onChangeInput, setForm] = useForm({
     
     street: '',
     number: '',
@@ -33,13 +36,8 @@ const [address, setAddress] = useState({})
     city: '',
     state: '',
     complement: ''
-  })
+  })  
 
-
-  
-
-  
-console.log(form)
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -49,6 +47,7 @@ console.log(form)
       }
     }).then(res => {
       window.alert("Endereco atualizado")
+      history.push('/perfil')
     }).catch(res =>{
       window.alert("Falhou ao atualizar")
     })  
@@ -60,7 +59,10 @@ console.log(form)
   return (
     <Container>
       <Header>
-        <ArrowBackIosStyled />
+        <Link to={'/perfil'}>
+          <ArrowBackIosStyled />
+        </Link>
+        
         <Label>Endereco</Label>
       </Header>
       <Form onSubmit={handleSubmit}>
@@ -94,8 +96,7 @@ console.log(form)
             shrink: true
           }}
             
-            type={'text'}
-            placeholder={address.complement}
+            type={'text'}           
             name={'complement'}
             label="Complemento"
             value={form.complement}
@@ -103,11 +104,10 @@ console.log(form)
             onChange={onChangeInput}
           />
           <TextField
-          placeholder={address.neighbourhood}
+          placeholder={form.neighbourhood}
           InputLabelProps={{
             shrink: true
-          }}
-            
+          }}            
             type={'text'}
             name={'neighbourhood'}
             label="Bairro"
@@ -115,8 +115,7 @@ console.log(form)
             variant="outlined"
             onChange={onChangeInput}
           />
-          <TextField
-          placeholder={address.city}
+          <TextField          
           InputLabelProps={{
             shrink: true
           }}
@@ -128,8 +127,7 @@ console.log(form)
             variant="outlined"
             onChange={onChangeInput}
           />
-          <TextField
-          placeholder={address.state}
+          <TextField          
           InputLabelProps={{
             shrink: true
           }}
@@ -141,6 +139,7 @@ console.log(form)
             variant="outlined"
             onChange={onChangeInput}
           />
+          
           <ButtonStyled
             classes={{
               root: classes.root,
@@ -151,6 +150,7 @@ console.log(form)
             color={'primary'}>
             Salvar
         </ButtonStyled>
+       
         </ThemeProvider>
       </Form>
     </Container>
