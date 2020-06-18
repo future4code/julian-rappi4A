@@ -50,11 +50,7 @@ function Login() {
 
   const clickShowPassword = () => {
      setForm({...form, showPassword: !form.showPassword})
-  }
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
+  } 
 
   return (
     <LoginContainer >
