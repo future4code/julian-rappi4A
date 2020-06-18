@@ -1,25 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Form, ButtonStyled, Header, ArrowBackIosStyled, Label } from'./style' 
 import { TextField } from '@material-ui/core'
 import { useForm } from '../../hooks/useForm'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme, useStyles } from '../../Components/MaterialTheme/theme'
+import axios from 'axios' 
+import { baseUrl } from '../../Components/Configs';
+
 
 
 function EditAdress() {
+
+useEffect(() => {
+axios.get(`${baseUrl}/profile/address`, {
+  headers:{
+    auth: localStorage.getItem("token")
+  } }).then(res => {   
+    setAddress(res.data.address)
+    
+  })
+  
+},[])
+
+const [address, setAddress] = useState({})
+
   const classes = useStyles()
   const [form, onChangeInput] = useForm({
-    logradouro: '',
-    numero: '',
-    complemento: '',
-    bairro: '',
-    cidade: '',
-    estado: ''
+    
+    street: '',
+    number: '',
+    neighbourhood: '',
+    city: '',
+    state: '',
+    complement: ''
   })
 
+
+  
+
+  
+console.log(form)
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    axios.put(`${baseUrl}/address`, form, {
+      headers:{
+        auth: localStorage.getItem("token")
+      }
+    }).then(res => {
+      window.alert("Endereco atualizado")
+    }).catch(res =>{
+      window.alert("Falhou ao atualizar")
+    })  
   }
+ 
 
   
 
@@ -31,63 +65,79 @@ function EditAdress() {
       </Header>
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
-          <TextField
-            required
-            type={'text'}
-            placeholder={'Rua/ Av.'}
-            name={'logradouro'}
+          <TextField          
+          InputLabelProps={{
+            shrink: true
+          }}
+           
+            type={'text'}            
+            name={'street'}
             label="Logradouro"
-            value={form.logradouro}
+            value={form.street}
             variant="outlined"
             onChange={onChangeInput}
           />
-          <TextField
-            required
-            type={'number'}
-            placeholder={'Numero.'}
-            name={'numero'}
+          <TextField          
+          InputLabelProps={{
+            shrink: true
+          }}
+            
+            type={'number'}            
+            name={'number'}
             label="Numero"
-            value={form.numero}
+            value={form.number}
             variant="outlined"
             onChange={onChangeInput}
           />
           <TextField
-            required
+          InputLabelProps={{
+            shrink: true
+          }}
+            
             type={'text'}
-            placeholder={'Complemento.'}
-            name={'complemento'}
+            placeholder={address.complement}
+            name={'complement'}
             label="Complemento"
-            value={form.complemento}
+            value={form.complement}
             variant="outlined"
             onChange={onChangeInput}
           />
           <TextField
-            required
+          placeholder={address.neighbourhood}
+          InputLabelProps={{
+            shrink: true
+          }}
+            
             type={'text'}
-            placeholder={'Bairro.'}
-            name={'bairro'}
+            name={'neighbourhood'}
             label="Bairro"
-            value={form.bairro}
+            value={form.neighbourhood}
             variant="outlined"
             onChange={onChangeInput}
           />
           <TextField
-            required
+          placeholder={address.city}
+          InputLabelProps={{
+            shrink: true
+          }}
+           
             type={'text'}
-            placeholder={'Cidade.'}
-            name={'cidade'}
+            name={'city'}
             label="Cidade"
-            value={form.cidade}
+            value={form.city}
             variant="outlined"
             onChange={onChangeInput}
           />
           <TextField
-            required
+          placeholder={address.state}
+          InputLabelProps={{
+            shrink: true
+          }}
+            
             type={'text'}
-            placeholder={'Estado.'}
-            name={'estado'}
+            name={'state'}
             label="Estado"
-            value={form.estado}
+            value={form.state}
             variant="outlined"
             onChange={onChangeInput}
           />
