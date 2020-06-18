@@ -25,11 +25,16 @@ const DivFooter = styled.div`
     0 -1px 1px 0 rgba(0, 0, 0, 0.14);
 `
 
+const svgFooter = styled.img`
+
+`
+
+
 export default function index() {
   return (
     <Container>
       <DivFooter>
-        <img src={HomeIcon} alt="Home" />
+        <img src={HomeIcon}  alt="Home" />
         <img src={CardIcon} alt="Seu carrinho" />
         <img src={ProfileIcon} alt="Seu perfil" />
       </DivFooter>

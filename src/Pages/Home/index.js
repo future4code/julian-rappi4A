@@ -36,19 +36,22 @@ function Home() {
       }
     }).then(res => {
       setRestaurants(res.data.restaurants)
-      console.log(res.data.restaurants)
+   //   console.log(res.data.restaurants)
 
     }).catch(err => {
-      console.log(err)
+   //   console.log(err)
     })
   }, [])
 
-
+ 
+ 
   
+
   return (
  
     <Container >
 
+    
 
  
       <Header/>
@@ -79,8 +82,7 @@ function Home() {
          </Scrollyng>
       </DivMenu>    
 
-
-
+                
  
       <RestaurantList>
         {restaurants.map((restaurant) => {
