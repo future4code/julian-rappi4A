@@ -1,140 +1,184 @@
-import React from 'react';
-import { Container, Nav, ArrowBackIosStyled, ImgSignup, Titulo, Forms, InputSignup } from './styled';
-import Button from '@material-ui/core/Button';
-import logoRappi from './logo-future-eats-invert.png';
-import { FormControl, InputLabel, OutlinedInput, IconButton, InputAdornment } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import axios from "axios";
+import { baseUrl } from "../../Components/Configs";
+import { useStyles } from "../../Components/MaterialTheme/theme";
+import {
+  Container,
+  Nav,
+  ArrowBackIosStyled,
+  ImgSignup,
+  Titulo,
+  Forms,
+  InputSignup,
+} from "./styled";
+import Button from "@material-ui/core/Button";
+import logoRappi from "./logo-future-eats-invert.png";
+import { IconButton, InputAdornment } from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { useForm } from "../../hooks/useForm";
+import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles({
-  label: {
-    textTransform: 'capitalize',
-  },
-});
 function SignUp() {
+  const history = useHistory();
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    amount: "",
+  const [form, onChangeInput, setForm] = useForm({
+    name: "",
+    email: "",
+    cpf: "",
     password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false
+    showPassword: false,
+    confirmePassword: "",
+    confirmeShowPassword: false,
   });
 
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
-  const handleMouseDownPassword = event => {
+  const handleSubmit = (event) => {
+    if (form.password !== form.confirmePassword){
+      event.preventDefault();  
+    }
+      const body = {
+        name: form.name,
+        email: form.email,
+        cpf: form.cpf,
+        password: form.password
+    };
+      axios
+          .post(
+          `${baseUrl}/signup`,
+          body,
+          {
+              headers: {'Content-Type': 'application/json'}
+          })
+          .then(resposta => {
+              history.push("/register-adress")
+          })
+          .catch(error => {
+              console.log("Deu erro", error);
+          });
     event.preventDefault();
   };
+
+  const clickShowPassword = () => {
+    setForm({ ...form, showPassword: !form.showPassword });
+  };
+  const clickShowConfirmePassword = () => {
+    setForm({ ...form, confirmeShowPassword: !form.confirmeShowPassword });
+  };
+
   return (
     <Container>
       <Nav>
-        <ArrowBackIosStyled/>
+        <ArrowBackIosStyled />
       </Nav>
-      <ImgSignup src={logoRappi}/>        
+      <ImgSignup src={logoRappi} />
       <Titulo>Cadastrar</Titulo>
-      <Forms onSubmit={'Submit'}>
+      <Forms onSubmit={handleSubmit}>
         <InputSignup
           required
           label="Nome"
+          name="name"
           type="text"
-          placeholder="Nome e Sobrenome"
+          placeholder="Nome e sobrenome"
           variant="outlined"
           InputLabelProps={{
-            shrink: true
+            shrink: true,
+          }}
+          value={form.name}
+          onChange={onChangeInput}
+          inputProps={{
+            pattern: "[A-Z][a-z]* [A-Z][a-z]{3,}",
+            title: "Nome e sobrenome",
           }}
         />
         <InputSignup
           required
           label="E-mail"
+          name="email"
           type="email"
           placeholder="email@email.com"
           variant="outlined"
           InputLabelProps={{
-            shrink: true
+            shrink: true,
           }}
+          onChange={onChangeInput}
+          value={form.email}
         />
         <InputSignup
           required
           label="CPF"
+          name="cpf"
           placeholder="000.000.000-00"
           variant="outlined"
           InputLabelProps={{
-            shrink: true
+            shrink: true,
           }}
+          onChange={onChangeInput}
+          value={form.cpf}
+          inputProps={{
+            pattern: "[0-9]{11}",
+            title: "Apenas números" }}
         />
-        <FormControl
-          required
+        <InputSignup
+          InputLabelProps={{
+            shrink: true,
+          }}
+          type={form.showPassword ? "text" : "password"}
+          onChange={onChangeInput}
+          name={"password"}
+          label={"Senha"}
           variant="outlined"
-          label="Senha"
           placeholder="Mínimo 6 caracteres"
-        >
-          <InputLabel shrink={true} >
-            Senha
-          </InputLabel>
-          <OutlinedInput
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
-            endAdornment={
+          InputProps={{
+            endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                <IconButton onClick={clickShowPassword}>
+                  {" "}
+                  {form.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl>
-        <FormControl
+            ),
+          }}
+          inputProps={{
+            pattern: "[0-9]{6,}",
+            title: "A senha deve conter no mínimo 6 caracteres"}}
           required
+        />
+        <InputSignup
+          InputLabelProps={{
+            shrink: true,
+          }}
+          type={form.confirmeShowPassword ? "text" : "password"}
+          onChange={onChangeInput}
+          name={"confirmePassword"}
+          label={"Confirmar"}
           variant="outlined"
-          label="Confirmar"
-          placeholder="Confirme a senha anterior"
-          shrink={true} 
-        >
-          <InputLabel shrink={true} >
-            Confirmar
-          </InputLabel>
-          <OutlinedInput
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
-            endAdornment={
+          placeholder="Confirmar a senha anterior"
+          InputProps={{
+            endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                <IconButton onClick={clickShowConfirmePassword}>
+                  {" "}
+                  {form.confirmeShowPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl>
-        <Button 
-          variant="contained" 
-          type={'submit'}
-          color='primary'
-          classes={{label: classes.label}}
-          >Criar
-          </Button>
+            ),
+          }}
+          inputProps={{
+            pattern: "[0-9]{6,}",
+            title: "A senha deve conter no mínimo 6 caracteres"}}
+          required
+        />
+        <Button
+          variant="contained"
+          type={"submit"}
+          color={"primary"}
+          classes={{
+            root: classes.root,
+            label: classes.label,
+          }}
+        >
+          Criar
+        </Button>
       </Forms>
-    
     </Container>
   );
 }
