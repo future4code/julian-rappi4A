@@ -36,9 +36,6 @@ export const Scrollyng = styled.div `
     white-space:nowrap;
     margin-bottom:8px;
     scrollbar-face-color:red;
-
-}
-
  
 `
 export const ScrollyngItem = styled.div `
@@ -77,6 +74,7 @@ export const CardHeader = styled.div `
 export const CardHeaderImage = styled.img `
     width:328px;
     height: 120px;
+    border-radius: 8px 8px 0 0;
 
 
 `

@@ -29,10 +29,8 @@ function Home() {
   const [SearchRestaurant, setSearchRestaurant] = useState("");
   const [restaurants, setRestaurants] = useState([]);
 
-  
-
-  const removeDuplicates = (array,prop) => {
-    return restaurants.filter((obj,pos,arr) =>{
+  const removeDuplicates = (array, prop) => {
+    return restaurants.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
     })
   }
@@ -47,17 +45,13 @@ function Home() {
       }
     }).then(res => {
 
-      setRestaurants(res.data.restaurants)      
-
-   
-
+      setRestaurants(res.data.restaurants)
 
     }).catch(err => {
-   //   console.log(err)
+      window.alert('Falha ao carregar restaurantes.')
     })
     removeDuplicates()
   }, [])
-
 
   const goToRestaurant = (id) => {
     history.push(`/restaurant/${id}`);
@@ -86,39 +80,31 @@ function Home() {
       </DivInput>
       <DivMenu>
 
-         <Scrollyng >
-              {newArray.map((menu) => {
-                return <ScrollyngItem key={menu.id}>{menu.category}</ScrollyngItem>}
-                )} 
-         </Scrollyng>
-      </DivMenu>    
+        <Scrollyng >
+          {newArray.map((menu) => {
+            return <ScrollyngItem key={menu.id}>{menu.category}</ScrollyngItem>
+          }
+          )}
+        </Scrollyng>
+      </DivMenu>
 
-                
- 
       <RestaurantList>
-        {restaurants.map((restaurant) => {
+        {restaurants.length === 0 ? <div>carregando...</div> : restaurants.map((restaurant) => {
           return (
-
             <RestaurantCard key={restaurant.id} onClick={() => goToRestaurant(restaurant.id)}>
-            <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
-            <CardFooter>
-          <RestaurantName >{restaurant.name}</RestaurantName>
-              <RestaurantInfos>
-                <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
-          <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
-              </RestaurantInfos>
-            </CardFooter>
-          </RestaurantCard>
+              <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+              <CardFooter>
+                <RestaurantName >{restaurant.name}</RestaurantName>
+                <RestaurantInfos>
+                  <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
+                  <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
+                </RestaurantInfos>
+              </CardFooter>
+            </RestaurantCard>
           )
-        } )}
-    
- 
-
+        })}
       </RestaurantList>
-
-      <Footer ativo={0}/>
-
-
+      <Footer ativo={0} />
     </Container>
   );
 }
