@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AddRemoveButton } from './style'
 import { DishQuantity, LabelDishQuantity, Select, AddToCart, ModalStyled } from './style'
+import CartContext from '../../contexts/CartContext'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TransitionsModal(props) {
+    const cartContext = useContext(CartContext)
     const classes = useStyles();
     const [select, setSelect] = useState('')
     const [open, setOpen] = React.useState(false);
@@ -22,7 +24,9 @@ function TransitionsModal(props) {
 
     const handleClose = () => {
         setOpen(false);
-        props.handleQuantity(select)
+        props.handleQuantity(select, props.id)
+
+        cartContext.dispatch({ type: "ADD_ITEM_TO_CART", product: props.product });
     };
 
     const handleChange = (e) => {

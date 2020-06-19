@@ -24,11 +24,12 @@ const Container = Styled.div`
 `
 
 function App() {
-
   const [profile, setProfile] = useState({})
+  const [state, dispatch] = useReducer(storeReducer, initialState);
   let token = localStorage.getItem('token')
+
   useEffect(() => {
-    
+
     axios.get(`${baseUrl}/profile`, {
       headers: { auth: token }
     })
@@ -38,17 +39,15 @@ function App() {
       .catch(err => { })
   }, [token])
 
-  const [state, dispatch] = useReducer(storeReducer, initialState);
-
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={profile}>
-        <CartContext.Provider value={{ cart: state.cart, dispatch: dispatch }}>
-          <Container>
-            <Router />
-          </Container>
-        </CartContext.Provider>
+          <CartContext.Provider value={{ cart: state.cart, dispatch: dispatch }}>
+            <Container>
+              <Router />
+            </Container>
+          </CartContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </BrowserRouter>

@@ -7,13 +7,13 @@ import Modal from './Modal'
 
 function Restaurant(props) {
     const product = props.product
-    const [dishQuantity, setDishQuantity] = useState(0)
+    const [dishQuantity, setDishQuantity] = useState([])
 
-    const handleQuantity = (value) => {
-        setDishQuantity(value)
+    const handleQuantity = (value, id) => {
+        setDishQuantity([value, id])
     }
 
-    const quantityVisible = dishQuantity !== 0 ? <Quantity>{dishQuantity}</Quantity> : <div></div>
+    const quantityVisible = dishQuantity.length !== 0 ? <Quantity>{dishQuantity[0]}</Quantity> : <div></div>
 
     return (
         <ContainerDishes>
@@ -23,9 +23,9 @@ function Restaurant(props) {
                 <Ingredients>{product.description}</Ingredients>
                 <Price>R${product.price.toFixed(2)}</Price>
                 {quantityVisible}
-                <ButtonAdd><Modal handleQuantity={handleQuantity} /></ButtonAdd>
+                <ButtonAdd><Modal handleQuantity={handleQuantity} id={product.id} product={props.product} /></ButtonAdd>
             </WriterDish>
-        </ContainerDishes>
+        </ContainerDishes >
     );
 }
 
