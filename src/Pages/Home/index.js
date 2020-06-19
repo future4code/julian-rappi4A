@@ -30,18 +30,28 @@ function Home() {
   const [SearchRestaurant, setSearchRestaurant] = useState("")
   const [restaurants, setRestaurants ] = useState([])
 
+  
+
+  const removeDuplicates = (array,prop) => {
+    return restaurants.filter((obj,pos,arr) =>{
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
+    })
+  }
+
+  const newArray = removeDuplicates(restaurants, 'category')
+
   useEffect(() => {
     axios.get(`${baseUrl}/restaurants`, {
       headers: {
         auth: localStorage.getItem('token')
       }
     }).then(res => {
-      setRestaurants(res.data.restaurants)
-      console.log(res.data.restaurants)
+      setRestaurants(res.data.restaurants)      
 
     }).catch(err => {
       console.log(err)
     })
+    removeDuplicates()
   }, [])
 
   const goToRestaurant = (id) => {
@@ -76,7 +86,7 @@ function Home() {
       </DivInput>
       <DivMenu>
          <Scrollyng >
-              {restaurants.map((menu) => {
+              {newArray.map((menu) => {
                 return <ScrollyngItem>{menu.category}</ScrollyngItem>}
                 )} 
          </Scrollyng>
