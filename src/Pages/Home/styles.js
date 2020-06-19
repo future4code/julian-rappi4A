@@ -36,9 +36,6 @@ export const Scrollyng = styled.div `
     white-space:nowrap;
     margin-bottom:8px;
     scrollbar-face-color:red;
-
-}
-
  
 `
 export const ScrollyngItem = styled.div `
