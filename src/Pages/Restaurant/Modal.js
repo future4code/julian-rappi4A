@@ -27,7 +27,6 @@ function TransitionsModal(props) {
         props.handleQuantity(select, props.id)
 
         cartContext.dispatch({ type: "ADD_ITEM_TO_CART", product: props.product });
-        console.log(props.product)
     };
 
     const handleChange = (e) => {
