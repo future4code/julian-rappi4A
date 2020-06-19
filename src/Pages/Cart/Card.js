@@ -14,44 +14,32 @@ import CartContext from "../../contexts/CartContext";
 
 function Card(props) {
   const cartContext = useContext(CartContext);
-  
-  const handleRemoveItemFromCart = productId => {
+
+  const handleRemoveItemFromCart = (productId) => {
     cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", productId });
   };
   return (
     <ContainerDetails>
-      <ContainerDishes>
-        <Img src={"https://picsum.photos/id/1/200/300"} alt={"Prato"} />
-        <WriterDishe>
-          <DisheName>Bullguer</DisheName>
-          <Ingredients>
-            Pão, carne, queijo, cebola roxa, tomate, alface e molho.
-          </Ingredients>
-          <Price>R$23,00</Price>
-          <Quantity>2</Quantity>
-          <AddRemoveButton variant="outlined" color="primary">
-            remover
-          </AddRemoveButton>
-        </WriterDishe>
-      </ContainerDishes>
-      <ContainerDishes>
-        <Img src={"https://picsum.photos/id/1/200/300"} alt={"Prato"} />
-        <WriterDishe>
-          <DisheName>Bullguer</DisheName>
-          <Ingredients>
-            Pão, carne, queijo, cebola roxa, tomate, alface e molho.
-          </Ingredients>
-          <Price>R$23,00</Price>
-          <Quantity>2</Quantity>
-          <AddRemoveButton
-            variant="outlined"
-            color="primary"
-            // onClick={() => handleRemoveItemFromCart(product.id)}
-          >
-            remover
-          </AddRemoveButton>
-        </WriterDishe>
-      </ContainerDishes>
+      {cartContext.cart.map((product) => {
+        return (
+          <ContainerDishes key={product.id}>
+            <Img src={product.photoUrl} alt={"Prato"} />
+            <WriterDishe>
+              <DisheName>{product.name}</DisheName>
+              <Ingredients>{product.description}</Ingredients>
+              <Price>R$ {product.price.toFixed(2)}</Price>
+            <Quantity>{product.quantity}</Quantity>
+              <AddRemoveButton
+                variant="outlined"
+                color="primary"
+                onClick={() => handleRemoveItemFromCart(product.id)}
+              >
+                remover
+              </AddRemoveButton>
+            </WriterDishe>
+          </ContainerDishes>
+        );
+      })}
     </ContainerDetails>
   );
 }

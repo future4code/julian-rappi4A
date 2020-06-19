@@ -18,24 +18,23 @@ import InfoRestaurant from './InfoRestaurant';
 import Card from './Card';
 import PaymentMethods from './PaymentMethods';
 import Footer from '../../Components/Footer';
+import UserContext from "../../contexts/UserContext";
+import { useForm } from "../../hooks/useForm";
 
 function Cart() {
 
   const cartContext = useContext(CartContext);
   console.log('cart', cartContext)
-  const [products, setProducts] = useState([cartContext.cart])
-  console.log('products', products)
-
-  let shippingValue = 0;
-
-  cartContext.cart.forEach(product => {
-    shippingValue += product.shipping;
-  });
   
+  const profile = useContext(UserContext);
+
+
+  let shippingValue = 0; 
   let totalValue = 0;
 
   cartContext.cart.forEach(product => {
     totalValue = totalValue + product.price * product.quantity;
+    shippingValue = shippingValue + product.shipping;
   });
 
   return (
@@ -45,7 +44,7 @@ function Cart() {
       </Nav>
       <Header>
         <TitleAdress>Endereço de entrega</TitleAdress>
-        <Adress>Rua Alessandra Vieira, 42</Adress>
+        <Adress>{profile.address}</Adress>
       </Header>
       <Main>
         {cartContext.cart.length === 0 ? <emptyCart>Carrinho Vazio</emptyCart> 
