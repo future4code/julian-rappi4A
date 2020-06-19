@@ -69,6 +69,9 @@ function Login() {
             name={"email"}
             variant="outlined"
             placeholder="email@email.com"
+            inputProps={{
+              'data-testid': 'E-mail-input'
+            }}
             required
           />
 
