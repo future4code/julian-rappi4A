@@ -13,20 +13,20 @@ import {PerfilContainer,PerfilBar,PerfilInfo,PerfilEnderecoTitulo,
   
 function Perfil() {
   const pedidos = [
-  // {
-  //   restaurante:'Vinil Burguer',
-  //   data:'30 de setembro de 2020',
-  //   valor: 89 
-  // },{
-  //   restaurante:'Vinil Burguer',
-  //   data:'14 de junho de 2020',
-  //   valor: 19 
-  // },
-  // {
-  //   restaurante:'Experimenta Lanches',
-  //   data:'16 de junho de 2020',
-  //   valor: 29.40
-  // }
+  {
+    restaurante:'Vinil Burguer',
+    data:'30 de setembro de 2020',
+    valor: 89 
+  },{
+    restaurante:'Vinil Burguer',
+    data:'14 de junho de 2020',
+    valor: 19 
+  },
+  {
+    restaurante:'Experimenta Lanches',
+    data:'16 de junho de 2020',
+    valor: 29.40
+  }
 ]
 
 
@@ -100,7 +100,7 @@ function Perfil() {
               </div>
             </div>
        
-            <Footer />
+            <Footer ativo={2} />
     </PerfilContainer>
     
   );

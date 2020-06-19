@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 import HomeIcon from '../../Images/home-icon.svg'
+import HomeIconSelected from '../../Images/homeiconSelected.svg'
 import CardIcon from '../../Images/card-icon.svg'
+import CardIconSelected from '../../Images/cardiconSelected.svg'
 import ProfileIcon from '../../Images/profile.svg'
+import ProfileIconSelected from '../../Images/profileSelected.svg'
+
 
 const Container = styled.div`
 display:flex;
@@ -25,13 +30,27 @@ const DivFooter = styled.div`
     0 -1px 1px 0 rgba(0, 0, 0, 0.14);
 `
 
-export default function index() {
+export default function index(props) {
+
+  const estado = props.ativo
+
+
+  
+
+
+
   return (
     <Container>
-      <DivFooter>
-        <img src={HomeIcon} alt="Home" />
-        <img src={CardIcon} alt="Seu carrinho" />
-        <img src={ProfileIcon} alt="Seu perfil" />
+      <DivFooter>    
+        <Link to={'/home'}>
+        <img  src={ estado === 0 ? HomeIconSelected : HomeIcon} alt="Home" />
+        </Link>
+        <Link to={'/cart'}>
+        <img  src={ estado === 1 ? CardIconSelected : CardIcon}  alt="Seu carrinho" />
+        </Link>
+        <Link to={'/perfil'}>
+        <img  src={ estado === 2 ? ProfileIconSelected : ProfileIcon} alt="Seu perfil" />
+        </Link>
       </DivFooter>
     </Container>
   )

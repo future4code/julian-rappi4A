@@ -87,7 +87,7 @@ function Home() {
       <DivMenu>
          <Scrollyng >
               {newArray.map((menu) => {
-                return <ScrollyngItem>{menu.category}</ScrollyngItem>}
+                return <ScrollyngItem key={menu.id}>{menu.category}</ScrollyngItem>}
                 )} 
          </Scrollyng>
       </DivMenu>    
@@ -99,7 +99,7 @@ function Home() {
         {restaurants.map((restaurant) => {
           return (
 
-            <RestaurantCard onClick={() => goToRestaurant(restaurant.id)}>
+            <RestaurantCard key={restaurant.id} onClick={() => goToRestaurant(restaurant.id)}>
             <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
             <CardFooter>
           <RestaurantName >{restaurant.name}</RestaurantName>
@@ -116,7 +116,7 @@ function Home() {
 
       </RestaurantList>
 
-      <Footer/>
+      <Footer ativo={0}/>
     </Container>
   );
 }

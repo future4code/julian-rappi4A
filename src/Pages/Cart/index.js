@@ -15,7 +15,10 @@ import Card from './Card';
 import PaymentMethods from './PaymentMethods';
 import Footer from '../../Components/Footer';
 
-function Cart() {
+function Cart(props) {
+
+  
+
   return (
     <Container>
       <Nav>
@@ -38,7 +41,7 @@ function Cart() {
           Confirmar
         </Button>
       </Main>
-      <Footer />
+      <Footer ativo={1}/>
     </Container>
   );
 }
