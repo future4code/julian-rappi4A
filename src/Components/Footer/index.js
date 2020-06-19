@@ -30,6 +30,7 @@ const DivFooter = styled.div`
     0 -1px 1px 0 rgba(0, 0, 0, 0.14);
 `
 
+
 export default function index(props) {
 
   const estado = props.ativo
@@ -51,6 +52,8 @@ export default function index(props) {
         <Link to={'/perfil'}>
         <img  src={ estado === 2 ? ProfileIconSelected : ProfileIcon} alt="Seu perfil" />
         </Link>
+
+
       </DivFooter>
     </Container>
   )
