@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../contexts/CartContext";
 import {
   Container,
   Nav,
@@ -7,7 +8,7 @@ import {
   TitleAdress,
   Adress,
   Main,
-  Frete,
+  Frete, Value,
   Amount} from "./styled";
 import Button from "@material-ui/core/Button";
 import InfoRestaurant from './InfoRestaurant';
@@ -16,6 +17,19 @@ import PaymentMethods from './PaymentMethods';
 import Footer from '../../Components/Footer';
 
 function Cart() {
+
+
+  
+
+  const cartContext = useContext(CartContext);
+
+  let totalValue = 0;
+
+  cartContext.cart.forEach(product => {
+    totalValue = totalValue + product.price * product.quantity;
+  });
+
+
   return (
     <Container>
       <Nav>
@@ -31,14 +45,14 @@ function Cart() {
         <Frete>Frete R$6,00</Frete>
         <Amount>
           <h5>SUBTOTAL</h5>
-          <h5>R$67,00</h5>
+          <Value>R$ {totalValue.toFixed(2)}</Value>
         </Amount>
         <PaymentMethods/>
         <Button variant="contained" color="primary">
           Confirmar
         </Button>
       </Main>
-      <Footer />
+      <Footer ativo={1}/>
     </Container>
   );
 }

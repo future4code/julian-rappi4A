@@ -26,6 +26,11 @@ function Login() {
   const onSubmitLogin = (event) => {
     event.preventDefault()
 
+    const body = {
+      email: form.email,
+      password: form.password
+    }
+
     axios.post(`${baseUrl}/login`, form)
       .then(result => {
         window.localStorage.setItem('token', result.data.token)
@@ -45,11 +50,7 @@ function Login() {
 
   const clickShowPassword = () => {
      setForm({...form, showPassword: !form.showPassword})
-  }
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
+  } 
 
   return (
     <LoginContainer >
@@ -58,40 +59,39 @@ function Login() {
       <TitlePage title={'Entrar'} />
       <LoginForm onSubmit={onSubmitLogin}>
         <ThemeProvider theme={theme}>
-          <LoginInput
+          <LoginInput 
+          InputLabelProps={{
+            shrink: true,          }}     
             type={"email"}
-            label={"E-mail"}
-            color={"primary"}
+            label={"E-mail"}            
             onChange={onChangeInput}
             value={form["email"]}
             name={"email"}
             variant="outlined"
+            placeholder="email@email.com"
             required
           />
 
-         <FormControl variant="outlined" required>
-            <InputLabel>Senha</InputLabel>
-            <OutlinedInput
-            name={'password'}
-            type={form.showPassword ? 'text' : 'password'}
-            value={form['password']}
-            onChange={onChangeInput}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton
-                aria-label="toggle password visibility"
-                onClick={clickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge='end'
-                >
-                  {form.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-              labelWidth={60}
-              />
-
-         </FormControl>
+         <LoginInput 
+        InputLabelProps={{
+          shrink: true }}
+          type={form.showPassword ? "text" : "password"}
+          onChange={onChangeInput}
+          name={"password"}
+          label={'Senha'}
+          variant="outlined"
+          placeholder="Mínimo 6 caracteres"          
+          InputProps={{
+            endAdornment: 
+            <InputAdornment position="end">
+              <IconButton onClick={clickShowPassword}> {form.showPassword ? <Visibility /> : <VisibilityOff />
+              }</IconButton>
+            </InputAdornment>
+          }}
+          required
+        
+         
+         />
 
           <Button
             classes={{

@@ -11,6 +11,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    margin: auto;
 `;
 export const Nav = styled.div`
     width: 100%;
