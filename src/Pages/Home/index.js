@@ -29,21 +29,35 @@ function Home() {
   const [SearchRestaurant, setSearchRestaurant] = useState("");
   const [restaurants, setRestaurants] = useState([]);
 
+  
+
+  const removeDuplicates = (array,prop) => {
+    return restaurants.filter((obj,pos,arr) =>{
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
+    })
+  }
+
+  const newArray = removeDuplicates(restaurants, 'category')
+
   useEffect(() => {
-    axios
-      .get(`${baseUrl}/restaurants`, {
-        headers: {
-          auth: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setRestaurants(res.data.restaurants);
-        //   console.log(res.data.restaurants)
-      })
-      .catch((err) => {
-        //   console.log(err)
-      });
-  }, []);
+
+    axios.get(`${baseUrl}/restaurants`, {
+      headers: {
+        auth: localStorage.getItem('token')
+      }
+    }).then(res => {
+
+      setRestaurants(res.data.restaurants)      
+
+   
+
+
+    }).catch(err => {
+   //   console.log(err)
+    })
+    removeDuplicates()
+  }, [])
+
 
   const goToRestaurant = (id) => {
     history.push(`/restaurant/${id}`);
@@ -71,36 +85,40 @@ function Home() {
         />
       </DivInput>
       <DivMenu>
-        <Scrollyng>
-          {restaurants.map((menu) => {
-            return <ScrollyngItem>{menu.category}</ScrollyngItem>;
-          })}
-        </Scrollyng>
-      </DivMenu>
+
+         <Scrollyng >
+              {newArray.map((menu) => {
+                return <ScrollyngItem key={menu.id}>{menu.category}</ScrollyngItem>}
+                )} 
+         </Scrollyng>
+      </DivMenu>    
+
+                
+ 
       <RestaurantList>
         {restaurants.map((restaurant) => {
           return (
-            <RestaurantCard onClick={() => goToRestaurant(restaurant.id)}>
-              <CardHeader>
-                <CardHeaderImage
-                  src={restaurant.logoUrl}
-                  alt="logo restaurante"
-                />
-              </CardHeader>
-              <CardFooter>
-                <RestaurantName>{restaurant.name}</RestaurantName>
-                <RestaurantInfos>
-                  <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
-                  <RestaurantShipping>
-                    Frete R$ {restaurant.shipping.toFixed(2)}
-                  </RestaurantShipping>
-                </RestaurantInfos>
-              </CardFooter>
-            </RestaurantCard>
-          );
-        })}
+
+            <RestaurantCard key={restaurant.id} onClick={() => goToRestaurant(restaurant.id)}>
+            <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+            <CardFooter>
+          <RestaurantName >{restaurant.name}</RestaurantName>
+              <RestaurantInfos>
+                <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
+          <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
+              </RestaurantInfos>
+            </CardFooter>
+          </RestaurantCard>
+          )
+        } )}
+    
+ 
+
       </RestaurantList>
-      <Footer />
+
+      <Footer ativo={0}/>
+
+
     </Container>
   );
 }

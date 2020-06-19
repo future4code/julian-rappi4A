@@ -16,7 +16,11 @@ import Card from './Card';
 import PaymentMethods from './PaymentMethods';
 import Footer from '../../Components/Footer';
 
-function Cart(props) {
+function Cart() {
+
+
+  
+
   const cartContext = useContext(CartContext);
 
   let totalValue = 0;
@@ -24,6 +28,7 @@ function Cart(props) {
   cartContext.cart.forEach(product => {
     totalValue = totalValue + product.price * product.quantity;
   });
+
 
   return (
     <Container>
@@ -47,7 +52,7 @@ function Cart(props) {
           Confirmar
         </Button>
       </Main>
-      <Footer />
+      <Footer ativo={1}/>
     </Container>
   );
 }
