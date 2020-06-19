@@ -1,64 +1,72 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { FormControl } from "@material-ui/core";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 
 export const Container = styled.div`
-    max-width: 400px;
-    width: 100%;
-    height: 781px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    margin: auto;
+  max-width: 400px;
+  width: 100%;
+  height: 781px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  margin: auto;
 `;
 export const Nav = styled.div`
-    padding: 13px 0 12px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 13px 0 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 export const CartName = styled.p`
-    width: 100%;
-    font-weight: bold;
+  width: 100%;
+  font-weight: bold;
 `;
 export const Header = styled.div`
-    text-align: left;
-    width: 100%;
-    padding: 16px 0;
-    background: #eeeeee;
-    display: grid;
-    gap: 8px;
+  text-align: left;
+  width: 100%;
+  padding: 16px 0;
+  background: #eeeeee;
+  display: grid;
+  gap: 8px;
 `;
 export const TitleAdress = styled.p`
-    color: #b8b8b8;
-    padding-left: 16px;
+  color: #b8b8b8;
+  padding-left: 16px;
 `;
 export const Adress = styled.p`
-    color: black;
-    font-weight: bold;
-    padding-left: 16px;
+  color: black;
+  font-weight: bold;
+  padding-left: 16px;
 `;
 export const Main = styled.div`
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const InfoContainer = styled.div`
-    display: grid;
-    gap: 8px;
+  display: grid;
+  gap: 8px;
 `;
 export const RestaurantName = styled.p`
-    color: #e86e5a;
+  color: #e86e5a;
 `;
 export const RestaurantAdress = styled.p`
-    color: #b8b8b8;
+  color: #b8b8b8;
 `;
 export const Time = styled.p`
-    color: #b8b8b8;
+  color: #b8b8b8;
+`;
+export const emptyCart = styled.p`
+  margin: 0;
+  padding-bottom: 33px;
+`;
+export const Products = styled.div`
 `;
 
 // CARD
@@ -125,30 +133,30 @@ export const AddRemoveButton = styled(Button)`
   align-self: right;
 `;
 export const Frete = styled.p`
-    color: black;
-    text-align: end;
-    padding-top: 16px;
+  color: black;
+  align-self: flex-end;
+  padding-top: 16px;
 `;
 export const Value = styled.h5`
-    color: #e02020;
-    font-weight: bold;
+  color: #e02020;
+  font-weight: bold;
 `;
 export const Amount = styled.div`
-    width: 100%;
-    margin-top: 13px;
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  margin-top: 13px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
 `;
 export const ContainerPayment = styled(FormControl)`
-    width: 100%;
+  width: 100%;
 `;
 export const FormLabel = styled.label`
-    width: 100%;
-    margin-bottom: 8px;
+  width: 100%;
+  margin-bottom: 8px;
 `;
 export const Footer = styled.div`
-    width: 100%;
-    padding: 16px;
-    border: 1px solid orange;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid orange;
 `;
