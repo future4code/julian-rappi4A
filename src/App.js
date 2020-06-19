@@ -30,12 +30,9 @@ function App() {
       headers: { auth: localStorage.getItem('token') }
     })
       .then(res => {
-        console.log(res.data)
         setProfile(res.data.user)
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(err => { })
   }, [localStorage.getItem('token')])
 
   return (
