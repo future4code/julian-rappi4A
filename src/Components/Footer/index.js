@@ -12,7 +12,6 @@ import ProfileIconSelected from '../../Images/profileSelected.svg'
 const Container = styled.div`
 display:flex;
 justify-content:center;
-
 `
 const DivFooter = styled.div`
   position: fixed;

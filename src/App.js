@@ -33,12 +33,9 @@ function App() {
       headers: { auth: token }
     })
       .then(res => {
-        console.log(res.data)
         setProfile(res.data.user)
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(err => { })
   }, [token])
 
   const [state, dispatch] = useReducer(storeReducer, initialState);
