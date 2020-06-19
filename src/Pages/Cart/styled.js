@@ -129,6 +129,10 @@ export const Frete = styled.p`
     text-align: end;
     padding-top: 16px;
 `;
+export const Value = styled.h5`
+    color: #e02020;
+    font-weight: bold;
+`;
 export const Amount = styled.div`
     width: 100%;
     margin-top: 13px;
