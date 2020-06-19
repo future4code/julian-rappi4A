@@ -74,6 +74,7 @@ export const CardHeader = styled.div `
 export const CardHeaderImage = styled.img `
     width:328px;
     height: 120px;
+    border-radius: 8px 8px 0 0;
 
 
 `
