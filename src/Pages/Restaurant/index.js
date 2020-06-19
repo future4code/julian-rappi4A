@@ -8,9 +8,10 @@ import Dishes from './Dishes'
 import OrderInProgress from '../../Components/OrderInProgress'
 import axios from 'axios';
 import { baseUrl } from '../../Components/Configs'
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 function Restaurant() {
+  const history = useHistory()
   const pathParam = useParams()
   const [restaurantData, setRestaurantData] = useState({})
 
@@ -24,14 +25,14 @@ function Restaurant() {
         setRestaurantData(res.data.restaurant)
       })
       .catch(err => {
-        console.log(err)
+        window.alert('Não foi possível carregar as informações do restaurante')
       })
   }, [])
 
   return (
     <Container>
       <Header>
-        <ArrowBackIosStyled />
+        <ArrowBackIosStyled onClick={() => history.push('/home')} />
         <Label>Restaurante</Label>
       </Header>
       <Details>
@@ -44,8 +45,8 @@ function Restaurant() {
         </div>
         <Adress>{restaurantData.address}</Adress>
       </Details>
-      <Dishes />
-      <OrderInProgress />
+      <Dishes products={restaurantData.products} />
+      {/* <OrderInProgress /> */}
     </Container>
   );
 }

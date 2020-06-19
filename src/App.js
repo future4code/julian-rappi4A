@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Styled from 'styled-components'
+import React, { useEffect, useState, useReducer } from 'react';
+import Styled from 'styled-components';
 import Router from './Components/Router';
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import axios from 'axios'
-import UserContext from './contexts/UserContext'
+import axios from 'axios';
+import UserContext from './contexts/UserContext';
 import { baseUrl } from './Components/Configs';
+import CartContext from "./contexts/CartContext";
+import { storeReducer, initialState } from "./Reducers/store";
 
 const theme = createMuiTheme({
   palette: {
@@ -22,29 +24,30 @@ const Container = Styled.div`
 `
 
 function App() {
-
   const [profile, setProfile] = useState({})
+  const [state, dispatch] = useReducer(storeReducer, initialState);
+  let token = localStorage.getItem('token')
+
   useEffect(() => {
 
     axios.get(`${baseUrl}/profile`, {
-      headers: { auth: localStorage.getItem('token') }
+      headers: { auth: token }
     })
       .then(res => {
-        console.log(res.data)
         setProfile(res.data.user)
       })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [localStorage.getItem('token')])
+      .catch(err => { })
+  }, [token])
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={profile}>
-          <Container>
-            <Router />
-          </Container>
+          <CartContext.Provider value={{ cart: state.cart, dispatch: dispatch }}>
+            <Container>
+              <Router />
+            </Container>
+          </CartContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </BrowserRouter>

@@ -33,7 +33,6 @@ function EditSignUp() {
     axios.put(`${baseUrl}/profile`, form,
       { headers: { auth: localStorage.getItem('token') } })
       .then(res => {
-        console.log(res.data)
         history.push('/perfil')
       })
       .catch(err => {
@@ -51,7 +50,6 @@ function EditSignUp() {
         <ArrowBackIosStyled onClick={logout} />
         <Label>Editar</Label>
       </Header>
-      <div>{profile.name}</div>
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
           <TextField

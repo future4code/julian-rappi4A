@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import CartContext from "../../contexts/CartContext";
 import {
   Container,
   Nav,
@@ -7,7 +8,10 @@ import {
   TitleAdress,
   Adress,
   Main,
-  Frete,
+  Products,
+  emptyCart,
+  Frete, 
+  Value,
   Amount} from "./styled";
 import Button from "@material-ui/core/Button";
 import InfoRestaurant from './InfoRestaurant';
@@ -15,9 +19,24 @@ import Card from './Card';
 import PaymentMethods from './PaymentMethods';
 import Footer from '../../Components/Footer';
 
-function Cart(props) {
+function Cart() {
 
+  const cartContext = useContext(CartContext);
+  console.log('cart', cartContext)
+  const [products, setProducts] = useState([cartContext.cart])
+  console.log('products', products)
+
+  let shippingValue = 0;
+
+  cartContext.cart.forEach(product => {
+    shippingValue += product.shipping;
+  });
   
+  let totalValue = 0;
+
+  cartContext.cart.forEach(product => {
+    totalValue = totalValue + product.price * product.quantity;
+  });
 
   return (
     <Container>
@@ -29,12 +48,12 @@ function Cart(props) {
         <Adress>Rua Alessandra Vieira, 42</Adress>
       </Header>
       <Main>
-        <InfoRestaurant />
-        <Card />
-        <Frete>Frete R$6,00</Frete>
+        {cartContext.cart.length === 0 ? <emptyCart>Carrinho Vazio</emptyCart> 
+        : <Products><InfoRestaurant /><Card /></Products>}
+        <Frete>Frete R${shippingValue.toFixed(2)}</Frete>
         <Amount>
           <h5>SUBTOTAL</h5>
-          <h5>R$67,00</h5>
+          <Value>R$ {totalValue.toFixed(2)}</Value>
         </Amount>
         <PaymentMethods/>
         <Button variant="contained" color="primary">

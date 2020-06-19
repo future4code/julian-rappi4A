@@ -12,7 +12,6 @@ import ProfileIconSelected from '../../Images/profileSelected.svg'
 const Container = styled.div`
 display:flex;
 justify-content:center;
-
 `
 const DivFooter = styled.div`
   position: fixed;
@@ -29,6 +28,7 @@ const DivFooter = styled.div`
     0 -2px 1px -1px rgba(0, 0, 0, 0.12), 
     0 -1px 1px 0 rgba(0, 0, 0, 0.14);
 `
+
 
 export default function index(props) {
 
@@ -51,6 +51,8 @@ export default function index(props) {
         <Link to={'/perfil'}>
         <img  src={ estado === 2 ? ProfileIconSelected : ProfileIcon} alt="Seu perfil" />
         </Link>
+
+
       </DivFooter>
     </Container>
   )

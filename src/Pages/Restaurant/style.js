@@ -11,6 +11,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 text-align: left;
+margin: auto;
 `
 const Header = Styled.div`
 width: 100%;
@@ -39,6 +40,7 @@ const ImgPrincipal = Styled.img`
   max-width: 400px;
   height: 120px;
   border-radius: 8px 8px 0 0;
+  object-fit: contain;
 `
 const RestaurantName = Styled.label`
   color: #e86e5a;
@@ -63,10 +65,13 @@ export {
   ImgPrincipal, RestaurantName, RestaurantCategory, Shipping, Adress
 }
 
-// Dishes.js
+// Dishes.js e DishesByCategory.js
 
+const DishesContainer = Styled.div`
+  padding-bottom: 183px;
+`
 const ContainerDetails = Styled.div`
-  padding: 16px;
+  padding: 16px 16px 8px;
   display: grid;
   gap: 8px;
   ::-webkit-scrollbar {
@@ -90,6 +95,7 @@ const ContainerDishes = Styled.div`
   display: flex;
 `
 const WriterDish = Styled.div`
+  width: 100%;
   display: grid;
   grid-template-rows: 33px 1fr 1fr 30px;
   grid-template-columns: 1fr 57px 33px;
@@ -99,10 +105,11 @@ const DishImg = Styled.img`
   height: 100%;
   width: 97px;
   border-radius: 8px 0 0 8px;
+  object-fit: contain;
 `
 const DishName = Styled.label`
   color: #e86e5a;
-  grid-column: 1/2;
+  grid-column: 1/3;
   grid-row: 1/2;
   padding-top: 16px;
 `
@@ -145,7 +152,7 @@ const ButtonAdd = Styled.div`
 export {
   ContainerDetails, ContainerDishes, WriterDish,
   DishImg, DishName, Ingredients, Price, Category,
-  Quantity, AddRemoveButton, ButtonAdd
+  Quantity, AddRemoveButton, ButtonAdd, DishesContainer
 }
 
 // Modal.js

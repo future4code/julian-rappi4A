@@ -6,7 +6,6 @@ export const DivTitle = styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family: Roboto;
   font-size: 16px;
   width: 360px;
   height: 64px;
@@ -39,5 +38,3 @@ export default function index() {
         </div>
     )
 }
-
-

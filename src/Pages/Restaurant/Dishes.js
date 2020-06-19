@@ -1,46 +1,40 @@
 import React, { useState } from 'react';
-import {
-    ContainerDetails, ContainerDishes, WriterDish,
-    DishImg, DishName, Ingredients, Price, Category,
-    Quantity, ButtonAdd
-} from './style'
-import Modal from './Modal'
+import { ContainerDetails, Category, DishesContainer } from './style'
+import DishesByCategory from './DishesByCategory'
 
-function Restaurant() {
-    const [dishQuantity, setDishQuantity] = useState(0)
+function Dishes(props) {
+    const products = props.products
+    let categoryMap
+    let uniqueCategories
+    let togetherCategoryAndDishes
 
-    const quantityVisible = dishQuantity !== 0 ? <Quantity>{dishQuantity}</Quantity> : <div></div>
-
-    const handleQuantity = (value) => {
-        setDishQuantity(value)
+    if (products) {
+        categoryMap = products.map(product => {
+            return product.category
+        })
+        uniqueCategories = Array.from(new Set(categoryMap));
     }
 
     return (
-        <ContainerDetails>
-            <Category>Principais</Category>
-            <ContainerDishes>
-                <DishImg src={'https://picsum.photos/id/1/200/300'} alt={'Prato'} />
-                <WriterDish>
-                    <DishName>Bullguer</DishName>
-                    <Ingredients>Pão, carne, queijo, cebola roxa, tomate, alface e molho.</Ingredients>
-                    <Price>R$23,00</Price>
-                    {quantityVisible}
-                    <ButtonAdd><Modal handleQuantity={handleQuantity} /></ButtonAdd>
-                </WriterDish>
-            </ContainerDishes>
-            <Category>Principais</Category>
-            <ContainerDishes>
-                <DishImg src={'https://picsum.photos/id/1/200/300'} alt={'Prato'} />
-                <WriterDish>
-                    <DishName>Bullguer</DishName>
-                    <Ingredients>Pão, carne, queijo, cebola roxa, tomate, alface e molho.</Ingredients>
-                    <Price>R$23,00</Price>
-                    {quantityVisible}
-                    <ButtonAdd><Modal handleQuantity={handleQuantity} /></ButtonAdd>
-                </WriterDish>
-            </ContainerDishes>
-        </ContainerDetails>
+        <DishesContainer>
+            {!products ? <div>carregando...</div> : (
+                togetherCategoryAndDishes = uniqueCategories.map(category => {
+
+                    return (
+                        <ContainerDetails>
+                            <Category>{category}</Category>
+                            {products.filter(product => {
+                                if (product.category === category) {
+                                    return (product)
+                                }
+                            }).map(product => {
+                                return (<DishesByCategory product={product} />)
+                            })}
+                        </ContainerDetails>)
+                })
+            )}
+        </DishesContainer>
     );
 }
 
-export default Restaurant;
+export default Dishes;
