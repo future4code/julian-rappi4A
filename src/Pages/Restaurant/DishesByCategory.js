@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import {
-    ContainerDishes, WriterDish, Price, DishImg,
-    DishName, Ingredients, Quantity, ButtonAdd
-} from './style'
+import { ContainerDishes, WriterDish, Price, DishImg, DishName, Ingredients, Quantity, ButtonAdd } from './style'
 import Modal from './Modal'
 
 function Restaurant(props) {
