@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { ContainerDishes, WriterDish, Price, DishImg, DishName, Ingredients, Quantity, ButtonAdd } from './style'
+import React, { useState, useEffect } from 'react';
+import {
+    ContainerDishes, WriterDish, Price, DishImg,
+    DishName, Ingredients, Quantity, ButtonAdd
+} from './style'
 import Modal from './Modal'
 
 function Restaurant(props) {
@@ -10,7 +13,9 @@ function Restaurant(props) {
         setDishQuantity([value, id])
     }
 
-    const quantityVisible = dishQuantity.length !== 0 ? <Quantity>{dishQuantity[0]}</Quantity> : <div></div>
+    const quantityVisible = (dishQuantity.length !== 0 &&
+        (dishQuantity[0] !== 0) && dishQuantity[0] !== '') &&
+        <Quantity>{dishQuantity[0]}</Quantity>
 
     return (
         <ContainerDishes>
@@ -20,7 +25,13 @@ function Restaurant(props) {
                 <Ingredients>{product.description}</Ingredients>
                 <Price>R${product.price.toFixed(2)}</Price>
                 {quantityVisible}
-                <ButtonAdd><Modal handleQuantity={handleQuantity} id={product.id} product={props.product} /></ButtonAdd>
+                <ButtonAdd>
+                    <Modal
+                        handleQuantity={handleQuantity}
+                        id={product.id}
+                        product={props.product}
+                    />
+                </ButtonAdd>
             </WriterDish>
         </ContainerDishes >
     );
