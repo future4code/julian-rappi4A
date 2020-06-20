@@ -27,35 +27,50 @@ import { useHistory } from "react-router-dom";
 function Home() {
   const history = useHistory();
   const [SearchRestaurant, setSearchRestaurant] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);  
+  const [filter,setFilter] = useState(null)
+
+
+  // remover itens duplicados do array
 
   const removeDuplicates = (array, prop) => {
     return restaurants.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
     })
   }
-
   const newArray = removeDuplicates(restaurants, 'category')
+// final do codigo 
 
-  useEffect(() => {
+// filtrar os itens 
 
-    axios.get(`${baseUrl}/restaurants`, {
-      headers: {
-        auth: localStorage.getItem('token')
-      }
-    }).then(res => {
+useEffect(() => {
 
-      setRestaurants(res.data.restaurants)
+  axios.get(`${baseUrl}/restaurants`, {
+    headers: {
+      auth: localStorage.getItem('token')
+    }
+  }).then(res => {
 
-    }).catch(err => {
-      window.alert('Falha ao carregar restaurantes.')
-    })
-    removeDuplicates()
-  }, [])
+    setRestaurants(res.data.restaurants)
 
+  }).catch(err => {
+    window.alert('Falha ao carregar restaurantes.')
+  })
+  removeDuplicates()
+  
+}, [])
+
+
+
+  
   const goToRestaurant = (id) => {
     history.push(`/restaurant/${id}`);
+  
   };
+
+  
+  
+  
 
   return (
     <Container>
@@ -81,28 +96,47 @@ function Home() {
       <DivMenu>
 
         <Scrollyng >
+        <ScrollyngItem key='todos' onClick={() => setFilter(null)}>Todos</ScrollyngItem>
           {newArray.map((menu) => {
-            return <ScrollyngItem key={menu.id}>{menu.category}</ScrollyngItem>
+            return <ScrollyngItem key={menu.id} onClick={() => setFilter(menu.category)}>{menu.category}</ScrollyngItem>
           }
           )}
         </Scrollyng>
       </DivMenu>
 
       <RestaurantList>
-        {restaurants.length === 0 ? <div>carregando...</div> : restaurants.map((restaurant) => {
-          return (
+            {restaurants.length === 0 ? <div>carregando lista...</div>  : (
+          filter === null ? restaurants.map(restaurant =>{
+            return ( 
             <RestaurantCard key={restaurant.id} onClick={() => goToRestaurant(restaurant.id)}>
-              <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
-              <CardFooter>
-                <RestaurantName >{restaurant.name}</RestaurantName>
-                <RestaurantInfos>
-                  <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
-                  <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
-                </RestaurantInfos>
-              </CardFooter>
-            </RestaurantCard>
-          )
-        })}
+            <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+            <CardFooter>
+              <RestaurantName >{restaurant.name}</RestaurantName>
+              <RestaurantInfos>
+                <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
+                <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
+              </RestaurantInfos>
+            </CardFooter>
+          </RestaurantCard>
+
+            )
+          }) : restaurants.filter(arr => arr.category === filter).map(restaurant => {
+            return (
+              <RestaurantCard key={restaurant.id} onClick={() => goToRestaurant(restaurant.id)}>
+            <CardHeader><CardHeaderImage src={restaurant.logoUrl} alt="logo restaurante" /></CardHeader>
+            <CardFooter>
+              <RestaurantName >{restaurant.name}</RestaurantName>
+              <RestaurantInfos>
+                <RestaurantTime>{restaurant.deliveryTime} min</RestaurantTime>
+                <RestaurantShipping>Frete R$ {restaurant.shipping.toFixed(2)}</RestaurantShipping>
+              </RestaurantInfos>
+            </CardFooter>
+          </RestaurantCard>
+
+            )
+          })
+            )
+        }
       </RestaurantList>
       <Footer ativo={0} />
     </Container>
