@@ -1,15 +1,21 @@
-import React, { useState, useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AddRemoveButton } from './style'
-import { DishQuantity, LabelDishQuantity, Select, AddToCart, ModalStyled } from './style'
-import CartContext from '../../contexts/CartContext'
+import React, { useState, useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { AddRemoveButton } from "./style";
+import {
+  DishQuantity,
+  LabelDishQuantity,
+  Select,
+  AddToCart,
+  ModalStyled,
+} from "./style";
+import CartContext from "../../contexts/CartContext";
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 function TransitionsModal(props) {
@@ -36,7 +42,7 @@ function TransitionsModal(props) {
         setOpen(false);
         props.handleQuantity(select, props.id)
 
-        cartContext.dispatch({ type: "ADD_ITEM_TO_CART", product: props.product });
+        cartContext.dispatch({ type: "ADD_ITEM_TO_CART", product: props.product, quantity: select });
         select && setButtonText('remover')
     };
 
@@ -80,4 +86,4 @@ function TransitionsModal(props) {
     );
 }
 
-export default TransitionsModal
+export default TransitionsModal;

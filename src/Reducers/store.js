@@ -18,14 +18,14 @@ export const initialState = {
   
         if (productInCart === -1) {
           // Se ele não achar o produto no carrinho
-          newCart = [...state.cart, { ...action.product, quantity: 1 }];
-        } else {
+          newCart = [...state.cart, { ...action.product, quantity: action.select }];
+        } 
+        else {
           // Se ele achar o produto no carrinho
           newCart = state.cart.map(product => {
             if (product.id === action.product.id) {
               return {
-                ...product,
-                quantity: product.quantity + 1
+                ...product
               };
             }
             return product;
