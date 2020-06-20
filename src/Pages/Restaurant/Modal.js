@@ -17,26 +17,37 @@ function TransitionsModal(props) {
     const classes = useStyles();
     const [select, setSelect] = useState('')
     const [open, setOpen] = React.useState(false);
+    const [buttonText, setButtonText] = useState('adicionar')
 
     const handleOpen = () => {
-        setOpen(true);
+
+        if (buttonText === 'adicionar') {
+            setOpen(true);
+        } else {
+            setOpen(false);
+            props.handleQuantity(0, props.id)
+            setButtonText('adicionar')
+            setSelect(0)
+        }
     };
 
     const handleClose = () => {
+
         setOpen(false);
         props.handleQuantity(select, props.id)
 
         cartContext.dispatch({ type: "ADD_ITEM_TO_CART", product: props.product });
+        select && setButtonText('remover')
     };
 
     const handleChange = (e) => {
         setSelect(e.target.value)
     }
-
+    
     return (
         <div>
             <AddRemoveButton onClick={handleOpen}>
-                adicionar
+                {buttonText}
             </AddRemoveButton>
             <ModalStyled
                 open={open}
